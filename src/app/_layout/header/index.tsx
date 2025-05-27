@@ -2,7 +2,7 @@ import styles from "./Header.module.css";
 
 import Link from "next/link";
 import Image from "next/image";
-import { getUserAction } from "@/actions/user";
+import { getUserAction } from "@/actions/requests/user";
 
 const Header = async () => {
     const { data: user } = await getUserAction();

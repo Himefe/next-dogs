@@ -54,12 +54,9 @@ export const loginRegisterAction = async (...args: [state: object, formData: For
     try {
         const [, formData] = args;
 
-        const response = await fetch("https://dogsapi.origamid.dev/json/api/user", {
+        const response = await fetch(`${process.env.API_URL}/json/api/user`, {
             method: "POST",
             body: formData,
-            headers: {
-                "Content-Type": "application/json",
-            },
         });
 
         const { data } = generateResponse<Login>({ data: await response.json(), ok: true });
@@ -75,8 +72,14 @@ export const loginRegisterAction = async (...args: [state: object, formData: For
             maxAge: 60 * 60 * 24,
         });
 
+        //TODO: login before redirect
+
         redirect("/conta");
     } catch (error) {
+        if (isRedirectError(error)) {
+            throw error;
+        }
+
         return apiError(error);
     }
 };

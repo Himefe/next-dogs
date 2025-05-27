@@ -1,5 +1,5 @@
-import { getPhotoAction } from "@/actions/photo";
-import { getUserAction } from "@/actions/user";
+import { getPhotoAction } from "@/actions/requests/photo";
+import { getUserAction } from "@/actions/requests/user";
 import FeedModal from "./components/FeedModal";
 
 type FeedModalPageProps = {

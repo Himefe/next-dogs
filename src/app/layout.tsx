@@ -5,7 +5,7 @@ import Header from "./_layout/header";
 import Footer from "./_layout/footer";
 import React from "react";
 import { UserContextProvider } from "@/contexts/user";
-import { getUserAction } from "@/actions/user";
+import { getUserAction } from "@/actions/requests/user";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",

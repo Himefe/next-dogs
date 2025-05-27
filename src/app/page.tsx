@@ -1,5 +1,5 @@
 import Feed from "./_feed";
-import { getFeedPhotos } from "@/actions/feed";
+import { getFeedPhotos } from "@/actions/requests/feed";
 
 export default async function Home() {
     const { data } = await getFeedPhotos({ page: 1, total: 6 });

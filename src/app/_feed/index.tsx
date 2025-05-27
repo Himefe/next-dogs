@@ -1,6 +1,6 @@
 "use client";
 
-import { getFeedPhotos } from "@/actions/feed";
+import { getFeedPhotos } from "@/actions/requests/feed";
 import { useEffect, useState } from "react";
 import FeedPhotos from "./photos";
 import { FeedPhoto } from "@/types/feed";
