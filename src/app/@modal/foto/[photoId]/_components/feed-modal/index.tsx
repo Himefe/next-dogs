@@ -1,8 +1,7 @@
 "use client";
 
-import styles from "@/app/_feed/css/feed-photos-modal.module.css";
 import { useRouter } from "next/navigation";
-import PhotoContent, { PhotoContentProps } from "./PhotoContent";
+import PhotoContent, { PhotoContentProps } from "../photo-content";
 
 type FeedModalProps = Partial<PhotoContentProps>;
 
@@ -16,12 +15,12 @@ const FeedModal = ({ photo, comments = [], user }: FeedModalProps) => {
     };
 
     return (
-        <div className={styles.modal} onClick={handleCloseModal}>
+        <div className="modal" onClick={handleCloseModal}>
             {!!photo ? (
                 <PhotoContent comments={comments} photo={photo} user={user} />
             ) : (
-                <div className={styles.modalPhoto}>
-                    <h3>Não foi encontrado o conteúdo desta foto.</h3>
+                <div className="modal-content">
+                    <h3 className="no-content">Ocorreu um erro ao buscar o conteúdo, por favor tente novamente.</h3>
                 </div>
             )}
         </div>

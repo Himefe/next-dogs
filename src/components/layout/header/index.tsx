@@ -1,5 +1,4 @@
-import styles from "./Header.module.css";
-
+import styles from "./header.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { getUserAction } from "@/actions/requests/user";
@@ -9,7 +8,7 @@ const Header = async () => {
 
     return (
         <header className={styles.header}>
-            <nav className={styles.navHeader + " container"}>
+            <nav className={styles["nav-header"] + " container"}>
                 <Link href="/" aria-label="Dogs - Home" className={styles.logo}>
                     <Image src={"/assets/dogs.svg"} priority={true} width={28} height={22} alt="Dogs header logo" />
                 </Link>

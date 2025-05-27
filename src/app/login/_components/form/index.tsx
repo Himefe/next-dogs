@@ -3,7 +3,7 @@
 import Input from "@/components/login/Input";
 import Error from "@/components/error";
 import { loginAction } from "@/actions/requests/login";
-import SubmitButton from "./submit-button";
+import SubmitButton from "../submit-button";
 import { useActionState } from "react";
 import { generateResponse } from "@/lib/api";
 

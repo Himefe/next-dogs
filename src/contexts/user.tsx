@@ -2,13 +2,8 @@
 
 import logoutAction from "@/actions/user-logout";
 import validateTokenAction from "@/actions/validate-token";
+import { User } from "@/types/user";
 import { createContext, Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
-
-type User = {
-    id: string;
-    nome: string;
-    email: string;
-};
 
 type UserContextType = {
     user: User | null;

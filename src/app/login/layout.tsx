@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./css/login.module.css";
+import styles from "./login.module.css";
 
 type LoginLayoutProps = {
     children: React.ReactNode;

@@ -4,7 +4,7 @@ import { getFeedPhotos } from "@/actions/requests/feed";
 import { useEffect, useState } from "react";
 import FeedPhotos from "./photos";
 import { FeedPhoto } from "@/types/feed";
-import Loading from "../loading";
+import Loading from "../../app/loading";
 
 type FeedProps = {
     photos: FeedPhoto[];
@@ -71,7 +71,7 @@ const Feed = ({ photos: photosProps = [] }: FeedProps) => {
     }, [infinite, setPage]);
 
     return (
-        <section className="container mainContainer">
+        <section className="container main-container">
             {!!photosProps.length && <FeedPhotos photos={photos} />}
 
             {isLoading && <Loading />}

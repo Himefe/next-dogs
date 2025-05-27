@@ -1,21 +1,21 @@
 import stylesButton from "@/components/login/Button.module.css";
 import Link from "next/link";
-import LoginForm from "./components/form";
-import styles from "./css/login-form.module.css";
+import LoginForm from "./_components/form";
+import styles from "./_components/form/form.module.css";
 
 export const metadata = {
-    title: "Login",
-    description: "Esta é a página de login do usuário, no projeto dogs!",
+    title: "Next Dogs - Login",
+    description: "Esta é a página de login do usuário no projeto dogs!",
 };
 
 export const dynamic = "force-static";
 
 const LoginPage = () => {
     return (
-        <section className={styles.loginForm + " animeLeft"}>
+        <section className={styles["login-form"] + " anime-left"}>
             <h1 className={styles.title}>Login</h1>
             <LoginForm />
-            <Link className={styles.lostPassword} href="/login/perdeu">
+            <Link className={styles["lost-password"]} href="/login/perdeu">
                 Perdeu a Senha?
             </Link>
             <div className={styles.cadastro}>

@@ -1,0 +1,24 @@
+.comments {
+    display: flex;
+    margin: 10px 0;
+}
+
+.container {
+    padding: 20px;
+}
+
+.comments p {
+    margin-left: 5px;
+    word-break: break-word;
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        padding: 10px 20px;
+    }
+
+    .comments-area {
+        max-height: 74px;
+        overflow-y: auto;
+    }
+}

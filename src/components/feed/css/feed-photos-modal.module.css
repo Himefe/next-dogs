@@ -13,7 +13,7 @@
     cursor: pointer;
 }
 
-.modal > div > div > div {
+.modal > div {
     max-height: 36rem;
     height: inherit;
 }

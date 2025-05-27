@@ -7,7 +7,9 @@ import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { revalidateTag } from "next/cache";
 import { Login } from "@/types/login";
 
-export const loginAction = async (...args: [state: object, formData: FormData]) => {
+type ActionParam = [state: object, formData: FormData];
+
+export const loginAction = async (...args: ActionParam) => {
     try {
         const [, formData] = args;
 
@@ -50,7 +52,7 @@ export const loginAction = async (...args: [state: object, formData: FormData]) 
     }
 };
 
-export const loginRegisterAction = async (...args: [state: object, formData: FormData]) => {
+export const loginRegisterAction = async (...args: ActionParam) => {
     try {
         const [, formData] = args;
 

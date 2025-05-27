@@ -1,4 +1,4 @@
-.loginForm {
+.login-form {
     max-width: 30rem;
     padding: 1rem;
     margin-top: 20vh;
@@ -30,14 +30,14 @@
     margin-bottom: 30px;
 }
 
-.lostPassword {
+.lost-password {
     display: inline-block;
     color: #666;
     padding: 0.5rem 0;
     line-height: 1;
 }
 
-.lostPassword::after {
+.lost-password::after {
     display: block;
     content: "";
     width: 100%;
@@ -83,7 +83,7 @@
         left: -8px;
     }
 
-    .loginForm {
+    .login-form {
         margin-top: 0;
     }
 }

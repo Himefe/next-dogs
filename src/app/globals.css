@@ -107,14 +107,14 @@ input {
     align-items: center;
 }
 
-.mainContainer {
+.main-container {
     margin: 2rem auto;
 }
 
-.animeLeft {
+.anime-left {
     opacity: 0;
     transform: translateX(-20px);
-    animation: animeLeft 0.6s forwards;
+    animation: anime-left 0.6s forwards;
 }
 
 .footer p {
@@ -166,10 +166,62 @@ input {
     place-content: center;
 }
 
-@keyframes animeLeft {
+.modal .no-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    cursor: pointer;
+}
+
+.modal > div {
+    max-height: 36rem;
+    height: inherit;
+}
+
+.modal ul li div img {
+    max-height: inherit;
+}
+
+.modal-content {
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: grid;
+    background: #fff;
+    border-radius: 0.2rem;
+    transform: scale(0.8);
+    animation: fadeIn 0.2s forwards linear;
+    transition: all 0.3s ease-in;
+    min-height: 36rem;
+    min-width: 40%;
+    max-width: 90%;
+    cursor: auto;
+}
+
+@keyframes anime-left {
     to {
         opacity: 1;
         transform: translateX(0px);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        transform: scale(1);
     }
 }
 
@@ -180,5 +232,9 @@ input {
 
     .mainBody {
         margin-bottom: 80px;
+    }
+
+    .modal {
+        place-items: center;
     }
 }

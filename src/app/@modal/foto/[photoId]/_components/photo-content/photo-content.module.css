@@ -1,0 +1,117 @@
+.modal-photo {
+    grid-template-columns: 36rem 20rem;
+    grid-template-rows: auto 1fr auto;
+}
+
+.img-content {
+    grid-row: 1/4;
+    height: 100%;
+}
+
+.img-content img {
+    width: 100%;
+    height: 100%;
+    grid-area: 1/1;
+    border-top-left-radius: 0.2rem;
+    border-bottom-left-radius: 0.2rem;
+}
+
+.container {
+    padding: 20px;
+}
+
+.author {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0.5;
+}
+
+.author span {
+    color: #333;
+    display: flex;
+    align-items: flex-end;
+    height: 20px;
+}
+
+.author span::before {
+    content: "";
+    display: flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    background: url("/assets/visualizacao-black.svg") no-repeat;
+    background-position: center center;
+    margin-right: 5px;
+}
+
+.author > a {
+    color: #333;
+}
+
+.author a:hover {
+    text-decoration: #333;
+}
+
+.attributes {
+    display: flex;
+    align-items: center;
+}
+
+.attributes span {
+    border-left: 2px solid #333;
+    font-weight: 700;
+    color: #333;
+    padding: 0 5px;
+    margin-right: 2rem;
+    font-size: 1.125rem;
+}
+
+.container h1 {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.comment-content {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-row: 1/4;
+}
+
+@media screen and (max-width: 767px) {
+    .modal-photo {
+        justify-self: center;
+        grid-template-columns: 1fr;
+        height: 90%;
+        width: 90vw;
+        justify-content: center;
+    }
+
+    .img-content {
+        grid-row: 1;
+    }
+
+    .img-content img {
+        grid-area: 1/1;
+        border-top-left-radius: 0.2rem;
+        border-top-right-radius: 0.2rem;
+        border-bottom-left-radius: 0px;
+    }
+
+    .comment-content {
+        grid-row: auto;
+    }
+
+    .container {
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    .modal-photo {
+        grid-template-columns: 60% 40%;
+        margin: 0 20px;
+        height: auto;
+    }
+}
