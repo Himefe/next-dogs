@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FeedPhoto } from "@/types/feed";
+import styles from "../feed-photos.module.css";
 
 type FeedPhotosItemProps = {
     item: FeedPhoto;
@@ -24,7 +25,7 @@ const FeedPhotosItem = ({ item }: FeedPhotosItemProps) => {
 
     return (
         <li>
-            <div style={{ display: "grid", gridArea: "1/1" }}>
+            <div className={styles["image-container"]}>
                 <Image width={1000} height={1000} src={item.src} alt={item.title} />
             </div>
             <span onClick={handleClick}>{attAcesso}</span>

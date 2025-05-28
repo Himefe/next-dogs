@@ -4,7 +4,6 @@ import { apiError, generateResponse } from "@/lib/api";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
-import { revalidateTag } from "next/cache";
 import { Login } from "@/types/login";
 
 type ActionParam = [state: object, formData: FormData];
@@ -38,7 +37,6 @@ export const loginAction = async (...args: ActionParam) => {
         });
 
         if (data!.token) {
-            revalidateTag("user");
             redirect("/conta");
         }
 

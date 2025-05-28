@@ -8,7 +8,7 @@ import { useActionState } from "react";
 import { generateResponse } from "@/lib/api";
 
 const LoginForm = () => {
-    const [state, action] = useActionState(loginAction, generateResponse({ data: null }));
+    const [state, action] = useActionState(loginAction, generateResponse());
 
     return (
         <form action={action}>

@@ -1,6 +1,6 @@
 import { FeedPhoto } from "@/types/feed";
-import styles from "../css/feed-photos.module.css";
-import FeedPhotosItem from "./item";
+import styles from "./feed-photos.module.css";
+import FeedPhotosItem from "./photo";
 
 type FeedPhotosProps = {
     photos: FeedPhoto[];
@@ -8,7 +8,7 @@ type FeedPhotosProps = {
 
 const FeedPhotos = ({ photos }: FeedPhotosProps) => {
     return (
-        <ul className={styles.ulArea}>
+        <ul className={styles["ul-area"]}>
             {photos.map((photo) => (
                 <FeedPhotosItem item={photo} key={photo.id} />
             ))}

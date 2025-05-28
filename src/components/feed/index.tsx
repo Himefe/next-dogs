@@ -1,10 +1,11 @@
 "use client";
 
 import { getFeedPhotos } from "@/actions/requests/feed";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import FeedPhotos from "./photos";
 import { FeedPhoto } from "@/types/feed";
 import Loading from "../../app/loading";
+import styles from "./feed.module.css";
 
 type FeedProps = {
     photos: FeedPhoto[];
@@ -13,28 +14,44 @@ type FeedProps = {
 const VIEWPORT_HEIGHT_PERCENTAGE = 0.75;
 
 const Feed = ({ photos: photosProps = [] }: FeedProps) => {
-    const [infinite, setInfinite] = useState(true);
+    const [isInfinite, setIsInfinite] = useState(photosProps.length < 6 ? false : true);
     const [page, setPage] = useState(1);
     const [photos, setPhotos] = useState<FeedPhoto[]>(photosProps);
     const [isLoading, setIsLoading] = useState(false);
 
+    const shouldWaitScroll = useRef(false);
+
+    const handleInfiniteScroll = useCallback(() => {
+        if (!isInfinite || shouldWaitScroll.current || isLoading) return;
+
+        const scroll = window.scrollY;
+        const height = document.body.offsetHeight - window.innerHeight;
+        const canScroll = scroll > height * VIEWPORT_HEIGHT_PERCENTAGE;
+
+        if (canScroll) {
+            shouldWaitScroll.current = true;
+            setIsLoading(true);
+
+            setTimeout(() => {
+                setPage((page) => page + 1);
+                setIsLoading(false);
+                shouldWaitScroll.current = false;
+            }, 1000);
+        }
+    }, [isInfinite, isLoading]);
+
     useEffect(() => {
+        if (page === 1) return;
+
         const handleGetFeedPhotos = async () => {
             try {
-                if (page === 1) return;
-
-                setIsLoading(true);
                 const { data } = await getFeedPhotos({ page, total: 6 });
 
                 setPhotos((prevPhotos) => [...prevPhotos, ...(data || [])]);
 
-                if ((data || []).length < 6) {
-                    setInfinite(false);
-                }
+                if ((data || []).length < 6) setIsInfinite(false);
             } catch (error) {
                 console.log("error", error);
-            } finally {
-                setIsLoading(false);
             }
         };
 
@@ -42,40 +59,21 @@ const Feed = ({ photos: photosProps = [] }: FeedProps) => {
     }, [page]);
 
     useEffect(() => {
-        let shouldWait = false;
-        const infinitePage = () => {
-            if (infinite) {
-                const scroll = window.scrollY;
-                const height = document.body.offsetHeight - window.innerHeight;
-
-                const canScroll = scroll > height * VIEWPORT_HEIGHT_PERCENTAGE && !shouldWait;
-
-                if (canScroll) {
-                    shouldWait = true;
-                    setTimeout(() => {
-                        shouldWait = false;
-                    }, 1500);
-
-                    setPage((page) => page + 1);
-                }
-            }
-        };
-
-        window.addEventListener("wheel", infinitePage);
-        window.addEventListener("scroll", infinitePage);
+        if (isInfinite) {
+            window.addEventListener("scroll", handleInfiniteScroll);
+        } else {
+            window.removeEventListener("scroll", handleInfiniteScroll);
+        }
 
         return () => {
-            window.removeEventListener("wheel", infinitePage);
-            window.removeEventListener("scroll", infinitePage);
+            window.removeEventListener("scroll", handleInfiniteScroll);
         };
-    }, [infinite, setPage]);
+    }, [isInfinite, handleInfiniteScroll]);
 
     return (
         <section className="container main-container">
-            {!!photosProps.length && <FeedPhotos photos={photos} />}
-
-            {isLoading && <Loading />}
-            {(!infinite || !photos.length) && <p>Não há mais postagens.</p>}
+            {!!photos.length && <FeedPhotos photos={photos} />}
+            <div className={styles["loading-wrapper"]}>{isInfinite ? isLoading && <Loading /> : <p>Não há mais postagens.</p>}</div>
         </section>
     );
 };

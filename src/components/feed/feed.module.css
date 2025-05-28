@@ -1,0 +1,5 @@
+.loading-wrapper {
+    display: flex;
+    height: 100px;
+    margin: 1rem auto;
+}

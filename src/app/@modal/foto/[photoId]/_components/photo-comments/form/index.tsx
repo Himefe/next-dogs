@@ -24,7 +24,7 @@ const PhotoComment = ({ id, setComments }: PhotoCommentProps) => {
         <form onSubmit={sendComment} className={styles.form}>
             <textarea placeholder="Digite aqui seu comentário" value={comment} onChange={({ target }) => setComment(target.value)} className={styles.textArea} />
             <button className={styles.send}>
-                <Image alt="Enviar comentário" width={24} height={24} src="/assets/send.svg" />
+                <Image alt="Enviar comentário" width={24} height={24} src="/assets/enviar.svg" />
             </button>
         </form>
     );

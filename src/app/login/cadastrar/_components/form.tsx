@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 };
 
 const LoginRegisterForm = () => {
-    const [state, action] = useActionState(loginRegisterAction, generateResponse({ data: null }));
+    const [state, action] = useActionState(loginRegisterAction, generateResponse());
 
     const { replace } = useRouter();
 

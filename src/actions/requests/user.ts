@@ -19,9 +19,6 @@ export const getUserAction = async () => {
                 Authorization: `Bearer ${tkn}`,
                 "Content-Type": "application/json",
             },
-            next: {
-                tags: ["user"],
-            },
         });
 
         if (!res.ok) {

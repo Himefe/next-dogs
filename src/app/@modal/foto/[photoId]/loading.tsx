@@ -1,4 +1,4 @@
-import styles from "@/components/feed/css/feed-photos-modal.module.css";
+import styles from "@/components/feed/photos/feed-photos.module.css";
 import Loading from "@/app/loading";
 
 const FeedModalLoading = () => {
