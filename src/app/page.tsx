@@ -10,9 +10,5 @@ export const metadata: Metadata = {
 export default async function Home() {
     const { data } = await getFeedPhotos({ page: 1, total: 6 });
 
-    return (
-        <section>
-            <Feed photos={data || []} />
-        </section>
-    );
+    return <Feed photos={data || []} />;
 }

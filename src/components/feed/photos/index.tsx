@@ -1,3 +1,5 @@
+"use client";
+
 import { FeedPhoto } from "@/types/feed";
 import styles from "./feed-photos.module.css";
 import FeedPhotosItem from "./photo";

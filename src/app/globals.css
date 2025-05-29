@@ -212,6 +212,10 @@ input {
     cursor: auto;
 }
 
+.main-body {
+    min-height: 100vh;
+}
+
 @keyframes anime-left {
     to {
         opacity: 1;
@@ -230,7 +234,7 @@ input {
         width: 95%;
     }
 
-    .mainBody {
+    .main-body {
         margin-bottom: 80px;
     }
 

@@ -1,19 +1,16 @@
 import { getPhotoAction } from "@/actions/requests/photo";
 import { getUserAction } from "@/actions/requests/user";
 import FeedModal from "./_components/feed-modal";
+import { generatePhotoMetadata } from "@/app/foto/[photoId]/utils";
 
-type FeedModalPageProps = {
+export type FeedModalPageProps = {
     params: Promise<{ photoId: string }>;
 };
 
 export const generateMetadata = async ({ params }: FeedModalPageProps) => {
     const { photoId } = await params;
 
-    const { data: photo } = await getPhotoAction(photoId);
-
-    return {
-        title: `Next Dogs - Foto ${photo?.photo?.title || ""}`,
-    };
+    return generatePhotoMetadata(photoId);
 };
 
 const FeedModalPage = async ({ params }: FeedModalPageProps) => {

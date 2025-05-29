@@ -24,7 +24,7 @@ export const useGetUser = () => {
 
 type UserContextProviderProps = {
     children: React.ReactNode;
-    user: User | null;
+    user?: User | null;
 };
 
 export const UserContextProvider = ({ children, user: userProps }: UserContextProviderProps) => {

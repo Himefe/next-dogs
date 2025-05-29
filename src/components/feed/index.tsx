@@ -4,7 +4,7 @@ import { getFeedPhotos } from "@/actions/requests/feed";
 import { useCallback, useEffect, useRef, useState } from "react";
 import FeedPhotos from "./photos";
 import { FeedPhoto } from "@/types/feed";
-import Loading from "../../app/loading";
+import Loading from "@/components/loading";
 import styles from "./feed.module.css";
 
 type FeedProps = {
