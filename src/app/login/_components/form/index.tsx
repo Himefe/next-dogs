@@ -1,11 +1,11 @@
 "use client";
 
-import Input from "@/components/login/Input";
+import Input from "@/components/login/input";
 import Error from "@/components/error";
 import { loginAction } from "@/actions/requests/login";
-import SubmitButton from "../submit-button";
 import { useActionState } from "react";
 import { generateResponse } from "@/lib/api";
+import Button from "@/components/login/button";
 
 const LoginForm = () => {
     const [state, action] = useActionState(loginAction, generateResponse());
@@ -14,7 +14,7 @@ const LoginForm = () => {
         <form action={action}>
             <Input placeholder="Digite seu usuário" label="Usuário" type="text" id="usuario" name="username" />
             <Input placeholder="Digite sua senha" label="Senha" type="password" id="password" name="password" />
-            <SubmitButton />
+            <Button pendingLabel="Entrando...">Entrar</Button>
 
             {!!state.error && <Error error={state.error} />}
         </form>

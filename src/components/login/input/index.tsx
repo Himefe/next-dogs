@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from "react";
-import styles from "./Input.module.css";
-import Error from "../error";
+import styles from "./input.module.css";
+import Error from "../../error";
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
     error?: string;

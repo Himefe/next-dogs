@@ -1,4 +1,4 @@
-import stylesButton from "@/components/login/Button.module.css";
+import stylesButton from "@/components/login/button/button.module.css";
 import Link from "next/link";
 import LoginForm from "./_components/form";
 import styles from "./_components/form/form.module.css";
@@ -12,10 +12,10 @@ export const dynamic = "force-static";
 
 const LoginPage = () => {
     return (
-        <section className={styles["login-form"] + " anime-left"}>
+        <section id="login" className="anime-left">
             <h1 className={styles.title}>Login</h1>
             <LoginForm />
-            <Link className={styles["lost-password"]} href="/login/perdeu">
+            <Link className={styles["lost-password"]} href="/login/esqueci-senha">
                 Perdeu a Senha?
             </Link>
             <div className={styles.cadastro}>

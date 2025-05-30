@@ -2,13 +2,12 @@
 
 import { Metadata } from "next";
 import styles from "../../_components/form/form.module.css";
-import Input from "@/components/login/Input";
+import Input from "@/components/login/input";
 import { loginRegisterAction } from "@/actions/requests/login";
 import Error from "@/components/error";
-import SubmitButton from "../../_components/submit-button";
-import { useActionState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useActionState } from "react";
 import { generateResponse } from "@/lib/api";
+import Button from "@/components/login/button";
 
 export const metadata: Metadata = {
     title: "Cadastrar",
@@ -18,25 +17,17 @@ export const metadata: Metadata = {
 const LoginRegisterForm = () => {
     const [state, action] = useActionState(loginRegisterAction, generateResponse());
 
-    const { replace } = useRouter();
-
-    useEffect(() => {
-        if (state.ok) replace("/login");
-    }, [state.ok, replace]);
-
     return (
-        <section className={styles["login-form"] + " anime-left"}>
-            <div className="anime-left">
-                <h1 className={styles.title}>Cadastre-se</h1>
-                <form action={action}>
-                    <Input label="Usuário" type="text" name="username" id="usuario" />
-                    <Input label="Email" type="email" name="email" id="email" />
-                    <Input label="Senha" type="password" name="password" id="password" />
-                    <SubmitButton label="Cadastrar" />
+        <section className="anime-left" id="login-register">
+            <h1 className={styles.title}>Cadastre-se</h1>
+            <form action={action}>
+                <Input label="Usuário" type="text" name="username" id="usuario" />
+                <Input label="Email" type="email" name="email" id="email" />
+                <Input label="Senha" type="password" name="password" id="password" />
+                <Button pendingLabel="Cadastrando...">Cadastrar</Button>
 
-                    {!!state.error && <Error error={state.error} />}
-                </form>
-            </div>
+                {!!state.error && <Error error={state.error} />}
+            </form>
         </section>
     );
 };
