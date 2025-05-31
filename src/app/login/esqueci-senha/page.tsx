@@ -1,5 +1,5 @@
 import { Metadata } from "next/dist/types";
-import LoginForgotPasswordForm from "./form";
+import LoginForgotPasswordForm from "./_components/form";
 
 export const metadata: Metadata = {
     title: "Next Dogs - Esqueci minha senha",

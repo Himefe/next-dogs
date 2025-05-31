@@ -26,7 +26,7 @@ export const loginAction = async (...args: ActionParam) => {
         const { data } = generateResponse<Login>({ data: await response.json(), ok: true });
 
         if (!response.ok) {
-            throw new Error(data!.message || "Ocorreu um erro ao processar sua solicitação.");
+            throw new Error(data!.message || "Ocorreu um erro ao tentar logar.");
         }
 
         (await cookies()).set("token", data!.token, {
@@ -97,13 +97,50 @@ export const loginPasswordLostAction = async (...args: ActionParam) => {
 
         const { data } = generateResponse({ data: await response.json(), ok: true });
 
-        console.log("🚀 ~ loginPasswordLostAction ~ data:", data);
+        if (!response.ok) {
+            throw new Error(data?.message || "Ocorreu um erro ao tentar enviar o email de recuperação de senha.");
+        }
+
+        return generateResponse({ ok: true });
+    } catch (error: unknown) {
+        return apiError(error);
+    }
+};
+
+export const loginPasswordResetAction = async (...args: ActionParam) => {
+    const [, formData] = args;
+
+    const login = formData.get("login") as string | null;
+    const key = formData.get("key") as string | null;
+    const password = formData.get("password") as string | null;
+
+    try {
+        const response = await fetch(`${process.env.API_URL}/json/api/password/reset`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                login,
+                key,
+                password,
+            }),
+        });
+
+        const { data } = generateResponse({ data: await response.json(), ok: true });
+
         if (!response.ok) {
             throw new Error(data?.message || "Ocorreu um erro ao tentar registrar.");
         }
 
         return generateResponse({ ok: true });
     } catch (error: unknown) {
+        if (isRedirectError(error)) {
+            throw error;
+        }
+
         return apiError(error);
+    } finally {
+        redirect("/login");
     }
 };

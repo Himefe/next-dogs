@@ -1,17 +1,15 @@
 import { ButtonHTMLAttributes } from "react";
 import styles from "./button.module.css";
-import { useFormStatus } from "react-dom";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     pendingLabel?: string;
+    isLoading?: boolean;
 };
 
-const Button = ({ children, pendingLabel = "Carregando...", ...props }: ButtonProps) => {
-    const { pending } = useFormStatus();
-
+const Button = ({ children, isLoading = false, pendingLabel = "Carregando...", ...props }: ButtonProps) => {
     return (
-        <button disabled={pending} className={styles.button} {...props}>
-            {pending ? pendingLabel : children}
+        <button disabled={isLoading} className={styles.button} {...props}>
+            {isLoading ? pendingLabel : children}
         </button>
     );
 };

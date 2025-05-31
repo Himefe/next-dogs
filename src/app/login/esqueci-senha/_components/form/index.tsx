@@ -8,7 +8,7 @@ import { generateResponse } from "@/lib/api";
 import { useActionState } from "react";
 
 const LoginForgotPasswordForm = () => {
-    const [state, action] = useActionState(loginPasswordLostAction, generateResponse());
+    const [state, action, isSubmitting] = useActionState(loginPasswordLostAction, generateResponse());
 
     return (
         <form action={action}>
@@ -17,7 +17,13 @@ const LoginForgotPasswordForm = () => {
 
             {!!state.error && <Error error={state.error} />}
 
-            {state.ok ? <p style={{ color: "#4c1" }}>Email enviado.</p> : <Button pendingLabel="Enviando...">Enviar email</Button>}
+            {state.ok ? (
+                <p style={{ color: "#4c1" }}>Email enviado.</p>
+            ) : (
+                <Button isLoading={isSubmitting} pendingLabel="Enviando...">
+                    Enviar email
+                </Button>
+            )}
         </form>
     );
 };
