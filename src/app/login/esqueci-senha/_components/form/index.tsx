@@ -7,23 +7,24 @@ import Input from "@/components/login/input";
 import { generateResponse } from "@/lib/api";
 import { useActionState } from "react";
 
-const LoginForgotPasswordForm = () => {
+type LoginResetPasswordFormProps = {
+    url: string;
+};
+
+const LoginForgotPasswordForm = ({ url }: LoginResetPasswordFormProps) => {
     const [state, action, isSubmitting] = useActionState(loginPasswordLostAction, generateResponse());
 
     return (
         <form action={action}>
-            <Input label="Email / Usuário" name="login" type="text" />
-            <input type="hidden" name="url" value={`${process.env.APP_URL_ORIGIN}/login/resetar`} />
+            <Input disabled={!!state.ok} label="Email / Usuário" name="login" type="text" />
+            <input type="hidden" name="url" value={url} />
+
+            <Button disabled={!!state.ok} isLoading={isSubmitting} pendingLabel="Enviando...">
+                Enviar email
+            </Button>
 
             {!!state.error && <Error error={state.error} />}
-
-            {state.ok ? (
-                <p style={{ color: "#4c1" }}>Email enviado.</p>
-            ) : (
-                <Button isLoading={isSubmitting} pendingLabel="Enviando...">
-                    Enviar email
-                </Button>
-            )}
+            {!!state.ok && <p style={{ color: "#4c1", marginTop: "1rem" }}>Email enviado.</p>}
         </form>
     );
 };

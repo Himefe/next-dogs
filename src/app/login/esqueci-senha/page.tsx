@@ -8,11 +8,11 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-static";
 
-const LoginForgotPasswordPage = async () => {
+const LoginForgotPasswordPage = () => {
     return (
         <section className="anime-left" id="login-forgot-password">
             <h1 className="title">Perdeu a senha?</h1>
-            <LoginForgotPasswordForm />
+            <LoginForgotPasswordForm url={process.env.APP_URL_ORIGIN!} />
         </section>
     );
 };
