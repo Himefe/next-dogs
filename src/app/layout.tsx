@@ -1,20 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/header";
 import React from "react";
 import { UserContextProvider } from "@/contexts/user";
 import { getUserAction } from "@/actions/requests/user";
 import Footer from "@/components/layout/footer";
-
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
-    subsets: ["latin"],
-});
+import { type_second } from "@/lib/fonts";
 
 export default async function RootLayout({
     children,
@@ -27,7 +17,7 @@ export default async function RootLayout({
 
     return (
         <html lang="pt-BR">
-            <body className={`${geistSans.variable} ${geistMono.variable}`}>
+            <body className={type_second.variable}>
                 <UserContextProvider user={user}>
                     <Header />
                     <main className="main-body">{children}</main>

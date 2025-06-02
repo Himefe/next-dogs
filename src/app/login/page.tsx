@@ -15,9 +15,6 @@ const LoginPage = () => {
         <section id="login" className="anime-left">
             <h1 className={styles.title}>Login</h1>
             <LoginForm />
-            <Link className={styles["lost-password"]} href="/login/esqueci-senha">
-                Perdeu a Senha?
-            </Link>
             <div className={styles.cadastro}>
                 <h2>Cadastre-se</h2>
                 <p>Ainda não possui conta? Cadastre-se no site.</p>

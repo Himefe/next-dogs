@@ -73,6 +73,13 @@
     color: red;
 }
 
+.submit-button_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
 @media screen and (max-width: 767px) {
     .title {
         font-size: var(--font-mobile);
