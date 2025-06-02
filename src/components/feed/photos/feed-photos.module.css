@@ -1,8 +1,7 @@
 .ul-area {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
-    grid-gap: 20px;
+    gap: 1rem;
     margin: 20px 0;
     height: 100%;
 }
@@ -57,6 +56,25 @@
 .image-container {
     display: grid;
     grid-area: 1/1;
+}
+
+.skeleton {
+    grid-area: 1/1;
+    height: inherit;
+    background: linear-gradient(90deg, #eee 0px, #fff 50%, #eee 100%);
+    background-size: 200%;
+    animation: skeletion 0.5s infinite linear;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+@keyframes skeletion {
+    from {
+        background-position: 0px;
+    }
+    to {
+        background-position: -200%;
+    }
 }
 
 @media screen and (max-width: 767px) {

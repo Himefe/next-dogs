@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { ReactEventHandler, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FeedPhoto } from "@/types/feed";
@@ -12,6 +12,7 @@ type FeedPhotosItemProps = {
 
 const FeedPhotosItem = ({ item }: FeedPhotosItemProps) => {
     const [attAcesso, setAttAcesso] = useState(item.acessos);
+    const [isShowingSkeleton, setIsShowingSkeleton] = useState(true);
 
     const { push } = useRouter();
 
@@ -23,10 +24,16 @@ const FeedPhotosItem = ({ item }: FeedPhotosItemProps) => {
         push(`/foto/${item.id}`);
     };
 
+    const handleShowImage: ReactEventHandler<HTMLImageElement> = ({ currentTarget }) => {
+        currentTarget.style.opacity = "1";
+        setIsShowingSkeleton(false);
+    };
+
     return (
         <li>
             <div className={styles["image-container"]}>
-                <Image width={1000} height={1000} src={item.src} alt={item.title} />
+                {isShowingSkeleton && <div className={styles.skeleton} />}
+                <Image onLoad={handleShowImage} width={1000} height={1000} src={item.src} alt={item.title} />
             </div>
             <span onClick={handleClick}>{attAcesso}</span>
         </li>
