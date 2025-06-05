@@ -28,7 +28,7 @@ const PhotoContent = ({ photo }: PhotoContentProps) => {
             <div className={styles["comment-content"]}>
                 <div className={styles.container}>
                     <p className={styles.author}>
-                        {photo.author !== user?.nome ? (
+                        {photo.author !== user?.username ? (
                             <Link href={`/perfil/${photo?.author}`}>@{photo?.author}</Link>
                         ) : (
                             <button disabled={false} onClick={handleDelete} className={styles.delete}>

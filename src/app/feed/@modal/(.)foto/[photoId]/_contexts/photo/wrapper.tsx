@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import { PhotoContext, PhotoContextType } from "../../_contexts/photo";
+import { PhotoContext, PhotoContextType } from ".";
 
 type PhotoProviderWrapperProps = {
     children: ReactNode;

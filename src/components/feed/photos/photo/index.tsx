@@ -21,7 +21,7 @@ const FeedPhotosItem = ({ item }: FeedPhotosItemProps) => {
 
         setAttAcesso((access) => Number(access) + 1);
 
-        push(`/foto/${item.id}`);
+        push(`feed/foto/${item.id}`);
     };
 
     const handleShowImage: ReactEventHandler<HTMLImageElement> = ({ currentTarget }) => {

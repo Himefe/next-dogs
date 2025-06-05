@@ -9,12 +9,12 @@ import styles from "./feed.module.css";
 
 type FeedProps = {
     photos: FeedPhoto[];
-    userId?: string;
+    username?: string;
 };
 
 const VIEWPORT_HEIGHT_PERCENTAGE = 0.75;
 
-const Feed = ({ photos: photosProps = [], userId }: FeedProps) => {
+const Feed = ({ photos: photosProps = [], username }: FeedProps) => {
     const [isInfinite, setIsInfinite] = useState(photosProps.length < 6 ? false : true);
     const [page, setPage] = useState(1);
     const [photos, setPhotos] = useState<FeedPhoto[]>(photosProps);
@@ -46,7 +46,7 @@ const Feed = ({ photos: photosProps = [], userId }: FeedProps) => {
 
         const handleGetFeedPhotos = async () => {
             try {
-                const { data } = await getFeedPhotos({ page, total: 6, user: userId });
+                const { data } = await getFeedPhotos({ page, total: 6, user: username });
 
                 setPhotos((prevPhotos) => [...prevPhotos, ...(data || [])]);
 
@@ -57,7 +57,7 @@ const Feed = ({ photos: photosProps = [], userId }: FeedProps) => {
         };
 
         handleGetFeedPhotos();
-    }, [page, userId]);
+    }, [page, username]);
 
     useEffect(() => {
         if (isInfinite) {
@@ -72,7 +72,7 @@ const Feed = ({ photos: photosProps = [], userId }: FeedProps) => {
     }, [isInfinite, handleInfiniteScroll]);
 
     return (
-        <section className="container main-container">
+        <section className="main-container">
             {!!photos.length && <FeedPhotos photos={photos} />}
             <div className={styles["loading-wrapper"]}>{isInfinite ? isLoading && <Loading /> : <p>Não há mais postagens.</p>}</div>
         </section>

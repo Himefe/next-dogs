@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import FeedWrapper from "@/components/feed/wrapper";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
     title: "Next Dogs - Feed",
@@ -7,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-    return <FeedWrapper />;
+    redirect("/feed");
 }

@@ -1,5 +1,5 @@
 import { getPhotoAction } from "@/actions/requests/photo";
-import FeedModalPage, { FeedModalPageProps } from "@/app/@modal/(.)foto/[photoId]/page";
+import FeedModalPage, { FeedModalPageProps } from "@/app/feed/@modal/(.)foto/[photoId]/page";
 import FeedWrapper from "@/components/feed/wrapper";
 
 export const generateMetadata = async ({ params }: FeedModalPageProps) => {

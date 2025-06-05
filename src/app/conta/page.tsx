@@ -4,9 +4,9 @@ import Feed from "@/components/feed";
 
 const UserAccountPage = async () => {
     const { data: user } = await getUserAction();
-    const { data: photos } = await getFeedPhotos({ page: 1, total: 6, user: user?.id.toString() });
+    const { data: photos } = await getFeedPhotos({ page: 1, total: 6, user: user?.username });
 
-    return <Feed photos={photos || []} userId={user?.id.toString()} />;
+    return <Feed photos={photos || []} username={user?.id.toString()} />;
 };
 
 export default UserAccountPage;
