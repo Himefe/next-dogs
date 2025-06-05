@@ -5,9 +5,9 @@ import { cookies } from "next/headers";
 
 const validateTokenAction = async () => {
     try {
-        const cookiesResponse = await cookies();
+        const cookie = await cookies();
 
-        const token = cookiesResponse.get("token")?.value;
+        const token = cookie.get("token")?.value;
         if (!token) throw new Error("Acesso negado.");
 
         const response = await fetch(`${process.env.API_URL}/json/jwt-auth/v1/token/validate`, {
