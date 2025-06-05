@@ -9,11 +9,12 @@ import styles from "./feed.module.css";
 
 type FeedProps = {
     photos: FeedPhoto[];
+    userId?: string;
 };
 
 const VIEWPORT_HEIGHT_PERCENTAGE = 0.75;
 
-const Feed = ({ photos: photosProps = [] }: FeedProps) => {
+const Feed = ({ photos: photosProps = [], userId }: FeedProps) => {
     const [isInfinite, setIsInfinite] = useState(photosProps.length < 6 ? false : true);
     const [page, setPage] = useState(1);
     const [photos, setPhotos] = useState<FeedPhoto[]>(photosProps);
@@ -45,7 +46,7 @@ const Feed = ({ photos: photosProps = [] }: FeedProps) => {
 
         const handleGetFeedPhotos = async () => {
             try {
-                const { data } = await getFeedPhotos({ page, total: 6 });
+                const { data } = await getFeedPhotos({ page, total: 6, user: userId });
 
                 setPhotos((prevPhotos) => [...prevPhotos, ...(data || [])]);
 
@@ -56,7 +57,7 @@ const Feed = ({ photos: photosProps = [] }: FeedProps) => {
         };
 
         handleGetFeedPhotos();
-    }, [page]);
+    }, [page, userId]);
 
     useEffect(() => {
         if (isInfinite) {

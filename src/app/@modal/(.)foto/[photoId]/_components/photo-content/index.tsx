@@ -4,17 +4,16 @@ import Link from "next/link";
 import styles from "./photo-content.module.css";
 import PhotoComments from "../photo-comments";
 import Image from "next/image";
-import { FeedPhoto, FeedPhotoComment } from "@/types/feed";
-import { User } from "@/types/user";
+import { FeedPhoto } from "@/types/feed";
+import { usePhoto } from "../../_contexts/photo";
 
-export type PhotoContentProps = Required<{
+export type PhotoContentProps = {
     photo: FeedPhoto;
-    comments: FeedPhotoComment[];
-}> & {
-    user?: User | null;
 };
 
-const PhotoContent = ({ photo, comments = [], user }: PhotoContentProps) => {
+const PhotoContent = ({ photo }: PhotoContentProps) => {
+    const { user } = usePhoto();
+
     const handleDelete = () => {
         window.confirm("Deseja realmente deletar esta foto?");
 
@@ -46,7 +45,7 @@ const PhotoContent = ({ photo, comments = [], user }: PhotoContentProps) => {
                         <span>{photo.idade} anos</span>
                     </div>
                 </div>
-                <PhotoComments comments={comments} id={photo.id} />
+                <PhotoComments photoId={photo.id} />
             </div>
         </div>
     );

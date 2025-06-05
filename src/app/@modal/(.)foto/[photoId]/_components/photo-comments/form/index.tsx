@@ -1,30 +1,30 @@
 "use client";
 
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import styles from "./form.module.css";
-import Image from "next/image";
-import { FeedPhotoComment } from "@/types/feed";
+import SendCommentIcon from "@/icons/send-comment";
 
 type PhotoCommentProps = {
-    id: number;
-    setComments: Dispatch<SetStateAction<FeedPhotoComment[]>>;
+    photoId: number;
 };
 
-const PhotoComment = ({ id, setComments }: PhotoCommentProps) => {
-    const [comment, setComment] = React.useState("");
-    console.log("🚀 ~ PhotoComment ~ id:", id);
-
-    console.log("🚀 ~ PhotoComment ~ setComments:", setComments);
+const PhotoComment = ({ photoId }: PhotoCommentProps) => {
+    console.log("🚀 ~ PhotoComment ~ id:", photoId);
 
     const sendComment = async (event: React.FormEvent) => {
         event.preventDefault();
+
+        const formData = new FormData(event.target as HTMLFormElement);
+
+        const msg = formData.get("comment") as string;
+        console.log(msg);
     };
 
     return (
         <form onSubmit={sendComment} className={styles.form}>
-            <textarea placeholder="Digite aqui seu comentário" value={comment} onChange={({ target }) => setComment(target.value)} className={styles.textArea} />
+            <textarea placeholder="Digite aqui seu comentário" name="comment" className={styles.textArea} />
             <button className={styles.send}>
-                <Image alt="Enviar comentário" width={24} height={24} src="/assets/enviar.svg" />
+                <SendCommentIcon />
             </button>
         </form>
     );

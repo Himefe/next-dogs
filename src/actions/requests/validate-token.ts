@@ -3,7 +3,7 @@
 import { apiError, generateResponse } from "@/lib/api";
 import { cookies } from "next/headers";
 
-export default async function validateTokenAction() {
+const validateTokenAction = async () => {
     try {
         const cookiesResponse = await cookies();
 
@@ -23,4 +23,6 @@ export default async function validateTokenAction() {
     } catch (error) {
         return apiError(error);
     }
-}
+};
+
+export default validateTokenAction;
