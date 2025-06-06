@@ -14,7 +14,7 @@ const Input = ({ label, error, ...props }: InputProps) => {
             <label htmlFor={props.id} className={styles.label}>
                 {label}
             </label>
-            <input ref={props.ref} className={styles.input} {...props} />
+            <input className={styles.input} {...props} />
             {!!error && <Error error={error} />}
         </div>
     );

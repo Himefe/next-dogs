@@ -8,10 +8,8 @@ import { type_second } from "@/lib/fonts";
 
 export default async function RootLayout({
     children,
-    modal,
 }: Readonly<{
     children: React.ReactNode;
-    modal: React.ReactNode;
 }>) {
     const { data: user } = await getUserAction();
 
@@ -21,7 +19,6 @@ export default async function RootLayout({
                 <UserContextProvider user={user}>
                     <Header />
                     <main className="main-body">{children}</main>
-                    {modal && modal}
                     <Footer />
                 </UserContextProvider>
             </body>

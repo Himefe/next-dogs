@@ -7,16 +7,16 @@ import { cookies } from "next/headers";
 export const getUserAction = async () => {
     try {
         const cookie = await cookies();
-        const tkn = cookie.get("token")?.value;
+        const token = cookie.get("token")?.value;
 
-        if (!tkn) {
+        if (!token) {
             throw new Error("Token not found");
         }
 
         const res = await fetch(`${process.env.API_URL}/json/api/user`, {
             method: "GET",
             headers: {
-                Authorization: `Bearer ${tkn}`,
+                Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
             },
         });

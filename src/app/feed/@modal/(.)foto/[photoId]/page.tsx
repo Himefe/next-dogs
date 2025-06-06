@@ -1,16 +1,10 @@
 import { getPhotoAction } from "@/actions/requests/photo";
 import { getUserAction } from "@/actions/requests/user";
 import FeedModal from "./_components/feed-modal";
-import { generatePhotoMetadata } from "@/app/foto/[photoId]/utils";
+import PhotoProviderWrapper from "./_contexts/photo/wrapper";
 
 export type FeedModalPageProps = {
     params: Promise<{ photoId: string }>;
-};
-
-export const generateMetadata = async ({ params }: FeedModalPageProps) => {
-    const { photoId } = await params;
-
-    return generatePhotoMetadata(photoId);
 };
 
 const FeedModalPage = async ({ params }: FeedModalPageProps) => {
@@ -19,7 +13,11 @@ const FeedModalPage = async ({ params }: FeedModalPageProps) => {
     const { data: photo } = await getPhotoAction(photoId);
     const { data: user } = await getUserAction();
 
-    return <FeedModal user={user} photo={photo?.photo} comments={photo?.comments} />;
+    return (
+        <PhotoProviderWrapper value={{ photo: photo?.photo, comments: photo?.comments || [], user }}>
+            <FeedModal />
+        </PhotoProviderWrapper>
+    );
 };
 
 export default FeedModalPage;
