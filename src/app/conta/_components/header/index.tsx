@@ -11,6 +11,7 @@ import LogoutIcon from "@/icons/logout";
 import useMedia from "@/hooks/use-media";
 import { useState } from "react";
 import classNames from "classnames";
+import logoutAction from "@/actions/user-logout";
 
 const UserAccountHeader = () => {
     const pathname = usePathname();
@@ -18,7 +19,9 @@ const UserAccountHeader = () => {
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const handleLogout = () => {};
+    const handleLogout = () => {
+        logoutAction();
+    };
 
     return (
         <div className={styles["user-area"]}>

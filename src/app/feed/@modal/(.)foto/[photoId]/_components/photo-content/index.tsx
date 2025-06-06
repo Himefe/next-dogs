@@ -6,6 +6,7 @@ import PhotoComments from "../photo-comments";
 import Image from "next/image";
 import { FeedPhoto } from "@/types/feed";
 import { usePhoto } from "../../_contexts/photo";
+import classNames from "classnames";
 
 export type PhotoContentProps = {
     photo: FeedPhoto;
@@ -21,7 +22,7 @@ const PhotoContent = ({ photo }: PhotoContentProps) => {
     };
 
     return (
-        <div className={"modal-content " + styles["modal-photo"]}>
+        <div className={classNames("modal-content", styles["modal-photo"])}>
             <div className={styles["img-content"]}>
                 <Image width={1000} height={1000} alt={photo?.title || ""} src={photo?.src || ""} />
             </div>
@@ -37,8 +38,8 @@ const PhotoContent = ({ photo }: PhotoContentProps) => {
                         )}
                         <span>{photo.acessos}</span>
                     </p>
-                    <h1 className="title">
-                        <Link href={`/foto/${photo.id}`}>{photo?.title}</Link>
+                    <h1 title={photo?.title || ""} className="title">
+                        {photo?.title}
                     </h1>
                     <div className={styles.attributes}>
                         <span>{photo.peso} Kg</span>

@@ -77,6 +77,7 @@
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-row: 1/4;
+    grid-template-columns: 100%;
 }
 
 @media screen and (max-width: 767px) {
