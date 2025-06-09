@@ -38,11 +38,11 @@ const UserAccountHeader = () => {
                     <FeedIcon />
                     {isMobile && "Minha conta"}
                 </Link>
-                <Link title="Estatísticas" href="conta/estatisticas" className={pathname === "/estatisticas" ? "active" : ""}>
+                <Link title="Estatísticas" href="conta/estatisticas" className={pathname === "/conta/estatisticas" ? "active" : ""}>
                     <StatsIcon />
                     {isMobile && "Minhas Fotos"}
                 </Link>
-                <Link title="Adicionar post" href="conta/adicionar-post" className={pathname === "/adicionar-post" ? "active" : ""}>
+                <Link title="Adicionar post" href="conta/postar" className={pathname.includes("postar") ? "active" : ""}>
                     <AddPostIcon />
                     {isMobile && "Minhas Fotos"}
                 </Link>

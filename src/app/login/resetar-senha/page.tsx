@@ -7,6 +7,8 @@ type LoginResetPasswordPageProps = {
     }>;
 };
 
+export const dynamic = "force-static";
+
 const LoginResetPasswordPage = async ({ searchParams }: LoginResetPasswordPageProps) => {
     const { key, login } = await searchParams;
 
