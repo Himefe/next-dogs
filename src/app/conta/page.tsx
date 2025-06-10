@@ -3,7 +3,7 @@ import { getUserAction } from "@/actions/requests/user";
 import Feed from "@/components/feed";
 import Link from "next/dist/client/link";
 import { Metadata } from "next/dist/types";
-import stylesButton from "@/components/login/button/button.module.css";
+import stylesButton from "@/components/button/button.module.css";
 import styles from "./user-account.module.css";
 
 export const metadata: Metadata = {

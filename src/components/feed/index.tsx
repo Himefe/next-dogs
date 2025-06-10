@@ -72,7 +72,7 @@ const Feed = ({ photos: photosProps = [], username }: FeedProps) => {
     }, [isInfinite, handleInfiniteScroll]);
 
     return (
-        <section className="main-container">
+        <section>
             {!!photos.length && <FeedPhotos photos={photos} />}
             <div className={styles["loading-wrapper"]}>{isInfinite ? isLoading && <Loading /> : <p>Não há mais postagens.</p>}</div>
         </section>

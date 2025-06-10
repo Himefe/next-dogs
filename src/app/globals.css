@@ -108,10 +108,6 @@ input {
     align-items: center;
 }
 
-.main-container {
-    margin: 2rem auto;
-}
-
 .anime-left {
     opacity: 0;
     transform: translateX(-20px);

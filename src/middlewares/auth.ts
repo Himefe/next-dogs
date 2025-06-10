@@ -1,7 +1,10 @@
+import validateTokenAction from "@/actions/requests/validate-token";
 import { NextRequest, NextResponse } from "next/server";
 
 const authMiddleware = async (request: NextRequest) => {
-    const isAuthenticated = request.cookies.get("token")?.value;
+    const token = request.cookies.get("token")?.value;
+    const { ok } = await validateTokenAction();
+    const isAuthenticated = token && ok;
 
     if (!isAuthenticated && request.nextUrl.pathname.startsWith("/conta")) {
         return NextResponse.redirect(new URL("/login", request.url));

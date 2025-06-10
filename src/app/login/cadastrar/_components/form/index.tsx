@@ -2,12 +2,12 @@
 
 import { Metadata } from "next";
 import styles from "@/app/login/_components/form/form.module.css";
-import Input from "@/components/login/input";
+import Input from "@/components/input";
 import { loginRegisterAction } from "@/actions/requests/login";
 import Error from "@/components/error";
 import { useActionState } from "react";
 import { generateResponse } from "@/lib/api";
-import Button from "@/components/login/button";
+import Button from "@/components/button";
 
 export const metadata: Metadata = {
     title: "Cadastrar",

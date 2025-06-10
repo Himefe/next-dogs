@@ -10,10 +10,10 @@ export const getUserAction = async () => {
         const token = cookie.get("token")?.value;
 
         if (!token) {
-            throw new Error("Token not found");
+            throw new Error("Token não encontrado.");
         }
 
-        const res = await fetch(`${process.env.API_URL}/json/api/user`, {
+        const response = await fetch(`${process.env.API_URL}/json/api/user`, {
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -21,11 +21,11 @@ export const getUserAction = async () => {
             },
         });
 
-        if (!res.ok) {
+        if (!response.ok) {
             throw new Error("Ocorreu um erro ao processar sua solicitação.");
         }
 
-        return generateResponse<User>({ data: await res.json(), ok: true });
+        return generateResponse<User>({ data: await response.json(), ok: true });
     } catch (error) {
         return apiError(error);
     }

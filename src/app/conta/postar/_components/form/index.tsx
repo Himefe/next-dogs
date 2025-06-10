@@ -1,11 +1,11 @@
 "use client";
 
-import Input from "@/components/login/input";
+import Input from "@/components/input";
 import styles from "./add-post-form.module.css";
 import { useActionState, useRef, useState } from "react";
 import UploadIcon from "@/icons/upload";
 import useMedia from "@/hooks/use-media";
-import Button from "@/components/login/button";
+import Button from "@/components/button";
 import { postPhotoAction } from "@/actions/requests/photo";
 import { generateResponse } from "@/lib/api";
 import Error from "@/components/error";
