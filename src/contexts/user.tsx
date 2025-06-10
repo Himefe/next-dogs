@@ -36,6 +36,7 @@ export const UserContextProvider = ({ children, user: userProps }: UserContextPr
 
             if (!ok) await logoutAction();
         };
+
         if (user) validate();
     }, [user]);
 

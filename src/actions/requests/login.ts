@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { Login } from "@/types/login";
 
-type ActionParam = [state: ReturnType<typeof generateResponse> | undefined, formData: FormData];
+export type ActionParam = [state: ReturnType<typeof generateResponse> | undefined, formData: FormData];
 
 export const loginAction = async (...args: ActionParam) => {
     try {

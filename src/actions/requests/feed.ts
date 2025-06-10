@@ -12,7 +12,10 @@ type FeedPhotosParam = {
 export const getFeedPhotos = async ({ page, total, user }: FeedPhotosParam) => {
     try {
         const response = await fetch(`${process.env.API_URL}/json/api/photo/?_page=${page}&_total=${total}&_user=${user}`, {
-            cache: "no-store",
+            next: {
+                revalidate: 60,
+                tags: ["feed-photos"],
+            },
         });
 
         if (!response.ok) throw new Error("Ocorreu um erro ao buscar as fotos do feed.");

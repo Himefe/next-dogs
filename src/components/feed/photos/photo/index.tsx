@@ -2,9 +2,9 @@
 
 import { ReactEventHandler, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { FeedPhoto } from "@/types/feed";
 import styles from "../feed-photos.module.css";
+import Link from "next/link";
 
 type FeedPhotosItemProps = {
     item: FeedPhoto;
@@ -14,14 +14,10 @@ const FeedPhotosItem = ({ item }: FeedPhotosItemProps) => {
     const [attAcesso, setAttAcesso] = useState(item.acessos);
     const [isShowingSkeleton, setIsShowingSkeleton] = useState(true);
 
-    const { push } = useRouter();
-
     const handleClick = () => {
         //fetchs
 
         setAttAcesso((access) => Number(access) + 1);
-
-        push(`/foto/${item.id}`);
     };
 
     const handleShowImage: ReactEventHandler<HTMLImageElement> = ({ currentTarget }) => {
@@ -35,7 +31,9 @@ const FeedPhotosItem = ({ item }: FeedPhotosItemProps) => {
                 {isShowingSkeleton && <div className={styles.skeleton} />}
                 <Image onLoad={handleShowImage} width={1000} height={1000} src={item.src} alt={item.title} />
             </div>
-            <span onClick={handleClick}>{attAcesso}</span>
+            <Link href={`feed/foto/${item.id}`} prefetch={true} onClick={handleClick}>
+                {attAcesso}
+            </Link>
         </li>
     );
 };

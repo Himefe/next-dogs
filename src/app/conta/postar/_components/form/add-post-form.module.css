@@ -1,0 +1,86 @@
+.input-file {
+    background-color: white;
+}
+
+.btn-file {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0.4rem;
+    text-align: left;
+}
+
+.btn-file:is(:hover, :focus) {
+    outline: none;
+    border-color: #fb1;
+    background: #fff;
+    box-shadow: 0 0 0 3px #fea;
+}
+
+.file-name {
+    flex: 1;
+    border: 1px solid #fb1;
+    padding: 15px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.btn-file input {
+    display: none;
+}
+
+.btn-file {
+    display: flex;
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-file .file-fake-btn {
+    background-color: #fb1;
+    padding: 15px;
+    border-radius: 5px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    color: #764701;
+    border: 1px solid #fb1;
+}
+
+.preview {
+    background-size: cover;
+    border-radius: 1rem;
+    background-position: center center;
+    height: 100%;
+}
+
+.preview::after {
+    content: "";
+    display: block;
+    height: 0px;
+    padding-bottom: 100%;
+}
+
+@media screen and (max-width: 767px) {
+    .form {
+        width: 100%;
+    }
+
+    .btn-file .file-fake-btn {
+        width: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        height: 50px;
+    }
+
+    .btn-file svg {
+        width: 50%;
+    }
+}

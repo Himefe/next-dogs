@@ -20,7 +20,8 @@ html {
 }
 
 body {
-    display: grid;
+    display: flex;
+    flex-direction: column;
 }
 
 #root {
@@ -105,10 +106,6 @@ input {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.main-container {
-    margin: 2rem auto;
 }
 
 .anime-left {
@@ -213,7 +210,7 @@ input {
 }
 
 .main-body {
-    min-height: 100vh;
+    height: calc(100vh - 4rem);
 }
 
 @keyframes anime-left {

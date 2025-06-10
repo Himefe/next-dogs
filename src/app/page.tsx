@@ -1,6 +1,5 @@
 import { Metadata } from "next";
-import Feed from "../components/feed";
-import { getFeedPhotos } from "@/actions/requests/feed";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
     title: "Next Dogs - Feed",
@@ -8,7 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-    const { data } = await getFeedPhotos({ page: 1, total: 6 });
-
-    return <Feed photos={data || []} />;
+    redirect("/feed");
 }

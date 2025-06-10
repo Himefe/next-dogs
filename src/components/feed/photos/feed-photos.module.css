@@ -28,7 +28,7 @@
     grid-template-rows: auto;
 }
 
-.ul-area span {
+.ul-area a {
     grid-area: 1/1;
     display: flex;
     align-items: center;
@@ -38,7 +38,7 @@
     height: 100%;
 }
 
-.ul-area span::before {
+.ul-area a::before {
     display: flex;
     align-items: center;
     content: url("/assets/visualizacao.svg");
@@ -47,7 +47,7 @@
     margin-right: 0.25rem;
 }
 
-.ul-area li:hover span {
+.ul-area li:hover a {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     opacity: 1;
