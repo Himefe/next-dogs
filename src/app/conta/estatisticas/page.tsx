@@ -1,8 +1,14 @@
 import getStats from "@/actions/requests/stats";
 import dynamic from "next/dynamic";
 import { StatisticsContentProps } from "./_components/content";
+import { Metadata } from "next/dist/types";
 
 const StatisticsContent = dynamic(() => import("./_components/content"));
+
+export const metadata: Metadata = {
+    title: "Next Dogs - Estatísticas",
+    description: "Esta é a página de estatísticas do usuário no projeto dogs!",
+};
 
 const StatisticsPage = async () => {
     const { data } = await getStats();
