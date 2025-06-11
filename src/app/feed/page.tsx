@@ -6,6 +6,8 @@ export const metadata: Metadata = {
     description: "Esta é a página de feed do projeto dogs!",
 };
 
+export const dynamic = "force-dynamic";
+
 const FeedPage = () => {
     return <FeedWrapper />;
 };

@@ -7,17 +7,13 @@ import Input from "@/components/input";
 import { generateResponse } from "@/lib/api";
 import { useActionState } from "react";
 
-type LoginResetPasswordFormProps = {
-    url: string;
-};
-
-const LoginForgotPasswordForm = ({ url }: LoginResetPasswordFormProps) => {
+const LoginForgotPasswordForm = () => {
     const [state, action, isSubmitting] = useActionState(loginPasswordLostAction, generateResponse());
 
     return (
         <form action={action}>
             <Input disabled={!!state.ok} label="Email / Usuário" name="login" type="text" />
-            <input type="hidden" name="url" value={url} />
+            <input type="hidden" name="url" value={window.location.href} />
 
             <Button disabled={!!state.ok} isLoading={isSubmitting} pendingLabel="Enviando...">
                 Enviar email

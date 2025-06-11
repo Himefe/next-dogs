@@ -1,0 +1,36 @@
+name: "Deploy to Vercel"
+
+on:
+    push:
+        branches:
+            - main
+
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+
+            - uses: actions/setup-node@v3
+              with:
+                  node-version: 22
+                  cache: yarn
+
+            - name: "Install dependencies"
+              run: yarn --frozen-lockfile
+
+            - name: "Run lint"
+              run: yarn lint
+
+            - name: "Build"
+              run: yarn build
+
+            - uses: amondnet/vercel-action@v25.2.0
+              with:
+                  vercel-token: ${{ secrets.VERCEL_TOKEN }}
+                  vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+                  vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+                  vercel-args: "--prod"
+                  envs: |
+                      JWT_SECRET=${{ secrets.JWT_SECRET }}
+                      API_URL=${{ secrets.API_URL }}
