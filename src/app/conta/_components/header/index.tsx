@@ -33,18 +33,31 @@ const UserAccountHeader = () => {
                     onClick={setIsMobileMenuOpen.bind(this, (prev) => !prev)}
                 />
             )}
-            <nav className={classNames(isMobile ? styles["nav-area-mobile"] : styles["nav-area"], isMobileMenuOpen && styles["mobile--active"])}>
+            <nav
+                className={classNames(
+                    isMobile ? styles["nav-area-mobile"] : styles["nav-area"],
+                    isMobileMenuOpen && styles["mobile--active"]
+                )}
+            >
                 <Link title="Minha conta" href="/conta" className={pathname === "/conta" ? "active" : ""}>
                     <FeedIcon />
                     {isMobile && "Minha conta"}
                 </Link>
-                <Link title="Estatísticas" href="/conta/estatisticas" className={pathname === "/conta/estatisticas" ? "active" : ""}>
+                <Link
+                    title="Estatísticas"
+                    href="/conta/estatisticas"
+                    className={pathname === "/conta/estatisticas" ? "active" : ""}
+                >
                     <StatsIcon />
-                    {isMobile && "Minhas Fotos"}
+                    {isMobile && "Estatísticas"}
                 </Link>
-                <Link title="Adicionar post" href="/conta/postar" className={pathname.includes("postar") ? "active" : ""}>
+                <Link
+                    title="Adicionar post"
+                    href="/conta/postar"
+                    className={pathname.includes("postar") ? "active" : ""}
+                >
                     <AddPostIcon />
-                    {isMobile && "Minhas Fotos"}
+                    {isMobile && "Adicionar post"}
                 </Link>
                 <button title="Sair" onClick={handleLogout}>
                     <LogoutIcon />
