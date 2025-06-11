@@ -31,6 +31,3 @@ jobs:
                   vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
                   vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
                   vercel-args: "--prod"
-                  envs: |
-                      JWT_SECRET=${{ secrets.JWT_SECRET }}
-                      API_URL=${{ secrets.API_URL }}
