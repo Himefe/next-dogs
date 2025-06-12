@@ -16,9 +16,4 @@
     .container {
         padding: 10px 20px;
     }
-
-    .comments-area {
-        max-height: 74px;
-        overflow-y: auto;
-    }
 }
