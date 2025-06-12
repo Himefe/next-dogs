@@ -11,14 +11,8 @@ type FeedPhotosItemProps = {
 };
 
 const FeedPhotosItem = ({ item }: FeedPhotosItemProps) => {
-    const [attAcesso, setAttAcesso] = useState(item.acessos);
+    const [accesses, setAccesses] = useState(item.acessos);
     const [isShowingSkeleton, setIsShowingSkeleton] = useState(true);
-
-    const handleClick = () => {
-        //fetchs
-
-        setAttAcesso((access) => Number(access) + 1);
-    };
 
     const handleShowImage: ReactEventHandler<HTMLImageElement> = ({ currentTarget }) => {
         currentTarget.style.opacity = "1";
@@ -31,8 +25,12 @@ const FeedPhotosItem = ({ item }: FeedPhotosItemProps) => {
                 {isShowingSkeleton && <div className={styles.skeleton} />}
                 <Image onLoad={handleShowImage} width={1000} height={1000} src={item.src} alt={item.title} />
             </div>
-            <Link href={`feed/foto/${item.id}`} prefetch={true} onClick={handleClick}>
-                {attAcesso}
+            <Link
+                href={`feed/foto/${item.id}`}
+                prefetch={true}
+                onClick={setAccesses.bind(this, (prev) => Number(prev) + 1)}
+            >
+                {accesses}
             </Link>
         </li>
     );

@@ -1,31 +1,33 @@
 "use client";
 
-import React from "react";
+import React, { useActionState } from "react";
 import styles from "./form.module.css";
 import SendCommentIcon from "@/icons/send-comment";
+import { generateResponse } from "@/lib/api";
+import { postPhotoCommentAction } from "@/actions/requests/photo";
+import Error from "@/components/error";
 
 type PhotoCommentProps = {
     photoId: number;
 };
 
 const PhotoComment = ({ photoId }: PhotoCommentProps) => {
-    console.log("🚀 ~ PhotoComment ~ id:", photoId);
-
-    const sendComment = async (event: React.FormEvent) => {
-        event.preventDefault();
-
-        const formData = new FormData(event.target as HTMLFormElement);
-
-        const msg = formData.get("comment") as string;
-        console.log(msg);
-    };
+    const [state, action, isSubmitting] = useActionState(postPhotoCommentAction, generateResponse());
 
     return (
-        <form onSubmit={sendComment} className={styles.form}>
-            <textarea placeholder="Digite aqui seu comentário" name="comment" className={styles.textArea} />
-            <button className={styles.send}>
+        <form action={action} className={styles.form}>
+            <input type="hidden" name="photoId" value={photoId} hidden />
+            <textarea
+                disabled={isSubmitting}
+                placeholder="Digite aqui seu comentário"
+                name="comment"
+                className={styles.textArea}
+            />
+            <button type="submit" disabled={isSubmitting} className={styles.send}>
                 <SendCommentIcon />
             </button>
+
+            {!!state?.error && <Error error={state.error} />}
         </form>
     );
 };
