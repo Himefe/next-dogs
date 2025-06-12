@@ -2,8 +2,11 @@ import getStats from "@/actions/requests/stats";
 import dynamic from "next/dynamic";
 import { StatisticsContentProps } from "./_components/content";
 import { Metadata } from "next/dist/types";
+import Loading from "@/app/loading";
 
-const StatisticsContent = dynamic(() => import("./_components/content"));
+const StatisticsContent = dynamic(() => import("./_components/content"), {
+    loading: () => <Loading />,
+});
 
 export const metadata: Metadata = {
     title: "Next Dogs - Estatísticas",

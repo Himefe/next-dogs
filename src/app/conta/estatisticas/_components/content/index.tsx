@@ -1,7 +1,7 @@
 "use client";
 
 import styles from "./statistics-content.module.css";
-import { VictoryPie } from "victory";
+import { VictoryBar, VictoryChart, VictoryContainer, VictoryPie } from "victory";
 
 export type StatisticsContentProps = {
     total: number;
@@ -22,6 +22,7 @@ const StatisticsContent = ({ total, graph }: StatisticsContentProps) => {
                         padding={{ top: 20, bottom: 20, left: 80, right: 80 }}
                         colorScale="red"
                         name="total"
+                        containerComponent={<VictoryContainer style={{ touchAction: "auto" }} />}
                         style={{
                             data: {
                                 fillOpacity: 0.9,
@@ -40,24 +41,9 @@ const StatisticsContent = ({ total, graph }: StatisticsContentProps) => {
             </div>
             <div className={styles["grafico-item"]}>
                 {!!graph.length ? (
-                    <VictoryPie
-                        data={graph}
-                        innerRadius={50}
-                        padding={{ top: 20, bottom: 20, left: 80, right: 80 }}
-                        colorScale="red"
-                        name="total"
-                        style={{
-                            data: {
-                                fillOpacity: 0.9,
-                                stroke: "#fff",
-                                strokeWidth: 2,
-                            },
-                            labels: {
-                                fontSize: 14,
-                                fill: "#333",
-                            },
-                        }}
-                    />
+                    <VictoryChart containerComponent={<VictoryContainer style={{ touchAction: "auto" }} />}>
+                        <VictoryBar alignment="start" data={graph} style={{ data: { fill: "#fb1", stroke: "#fea" } }} />
+                    </VictoryChart>
                 ) : (
                     <p className={styles["no-data-text"]}>Não há dados.</p>
                 )}
