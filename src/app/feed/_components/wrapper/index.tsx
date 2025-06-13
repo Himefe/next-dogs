@@ -1,5 +1,5 @@
 import { getFeedPhotos } from "@/actions/requests/feed";
-import Feed from "./index";
+import Feed from "@/components/feed";
 
 const FeedWrapper = async () => {
     const { data } = await getFeedPhotos({ page: 1, total: 6 });

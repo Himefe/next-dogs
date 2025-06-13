@@ -5,6 +5,7 @@ import Image from "next/image";
 import { FeedPhoto } from "@/types/feed";
 import styles from "../feed-photos.module.css";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type FeedPhotosItemProps = {
     item: FeedPhoto;
@@ -13,6 +14,8 @@ type FeedPhotosItemProps = {
 const FeedPhotosItem = ({ item }: FeedPhotosItemProps) => {
     const [accesses, setAccesses] = useState(item.acessos);
     const [isShowingSkeleton, setIsShowingSkeleton] = useState(true);
+
+    const pathname = usePathname();
 
     const handleShowImage: ReactEventHandler<HTMLImageElement> = ({ currentTarget }) => {
         currentTarget.style.opacity = "1";
@@ -26,10 +29,9 @@ const FeedPhotosItem = ({ item }: FeedPhotosItemProps) => {
                 <Image onLoad={handleShowImage} width={1000} height={1000} src={item.src} alt={item.title} />
             </div>
             <Link
-                href={`feed/foto/${item.id}`}
+                href={`${pathname}/foto/${item.id}`}
                 prefetch={true}
-                onClick={setAccesses.bind(this, (prev) => Number(prev) + 1)}
-            >
+                onClick={setAccesses.bind(this, (prev) => Number(prev) + 1)}>
                 {accesses}
             </Link>
         </li>
