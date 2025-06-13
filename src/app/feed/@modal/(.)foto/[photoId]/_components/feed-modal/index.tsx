@@ -21,7 +21,7 @@ const FeedModal = () => {
                 <PhotoContent photo={photo} />
             ) : (
                 <div className="modal-content">
-                    <h3 className="no-content">Ocorreu um erro ao buscar o conteúdo, por favor tente novamente.</h3>
+                    <h3 className="no-content">Nenhuma foto encontrada.</h3>
                 </div>
             )}
         </div>
