@@ -13,7 +13,7 @@ const LoginForgotPasswordForm = () => {
     return (
         <form action={action}>
             <Input disabled={!!state.ok} label="Email / Usuário" name="login" type="text" />
-            <input type="hidden" name="url" value={window.location.href} />
+            <input type="hidden" name="url" value={window.location.href.replace("esqueci", "resetar")} />
 
             <Button disabled={!!state.ok} isLoading={isSubmitting} pendingLabel="Enviando...">
                 Enviar email
