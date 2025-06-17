@@ -21,9 +21,7 @@ const AddPostForm = () => {
     const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
 
-        if (!!file) {
-            setFile(file);
-        }
+        setFile(file);
     };
 
     const handleOpenFileInput = () => {
@@ -38,7 +36,12 @@ const AddPostForm = () => {
                 <Input tabIndex={1} label="Título" type="text" name="nome" id="nome" />
                 <Input tabIndex={2} label="Peso" type="number" name="peso" id="peso" />
                 <Input tabIndex={3} label="Idade" type="number" name="idade" id="idade" />
-                <button type="button" tabIndex={4} onClick={handleOpenFileInput} aria-label="Selecionar arquivo" className={styles["btn-file"]}>
+                <button
+                    type="button"
+                    tabIndex={4}
+                    onClick={handleOpenFileInput}
+                    aria-label="Selecionar arquivo"
+                    className={styles["btn-file"]}>
                     <span className={styles["file-name"]} title={file?.name || ""}>
                         {file?.name || "Selecione um arquivo"}
                     </span>
@@ -52,7 +55,9 @@ const AddPostForm = () => {
                 {!!state.error && <Error error={state.error} />}
             </form>
 
-            {!!file && <div className={styles.preview} style={{ backgroundImage: `url('${URL.createObjectURL(file)}')` }} />}
+            {!!file && (
+                <div className={styles.preview} style={{ backgroundImage: `url('${URL.createObjectURL(file)}')` }} />
+            )}
         </>
     );
 };

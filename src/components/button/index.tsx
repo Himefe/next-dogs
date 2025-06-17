@@ -6,9 +6,15 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     isLoading?: boolean;
 };
 
-const Button = ({ children, isLoading = false, pendingLabel = "Carregando...", ...props }: ButtonProps) => {
+const Button = ({
+    children,
+    isLoading = false,
+    pendingLabel = "Carregando...",
+    disabled = false,
+    ...props
+}: ButtonProps) => {
     return (
-        <button disabled={isLoading} className={styles.button} {...props}>
+        <button disabled={disabled || isLoading} className={styles.button} {...props}>
             {isLoading ? pendingLabel : children}
         </button>
     );
