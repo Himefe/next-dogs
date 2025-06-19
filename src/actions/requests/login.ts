@@ -5,6 +5,9 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { Login } from "@/types/login";
+import { z } from "zod/v4";
+import { simpleExtractFirstError } from "@/lib/form";
+import { loginRegisterSchema } from "@/app/login/cadastrar/_components/form/utils";
 
 export type ActionParam = [state: ReturnType<typeof generateResponse> | undefined, formData: FormData];
 
@@ -53,6 +56,17 @@ export const loginAction = async (...args: ActionParam) => {
 export const loginRegisterAction = async (...args: ActionParam) => {
     try {
         const [, formData] = args;
+
+        const raw = Object.fromEntries(formData.entries());
+        const schemaValidation = loginRegisterSchema.safeParse(raw);
+
+        if (!schemaValidation.success) {
+            const fieldErrors = z.treeifyError(schemaValidation.error).properties;
+            return generateResponse({
+                ok: false,
+                fieldErrors: simpleExtractFirstError(fieldErrors),
+            });
+        }
 
         const response = await fetch(`${process.env.API_URL}/json/api/user`, {
             method: "POST",
