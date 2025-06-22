@@ -8,12 +8,24 @@ import { Login } from "@/types/login";
 import { z } from "zod/v4";
 import { simpleExtractFirstError } from "@/lib/form";
 import { loginRegisterSchema } from "@/app/login/cadastrar/_components/form/utils";
+import { loginSchema } from "@/app/login/_components/form/utils";
 
 export type ActionParam = [state: ReturnType<typeof generateResponse> | undefined, formData: FormData];
 
 export const loginAction = async (...args: ActionParam) => {
     try {
         const [, formData] = args;
+
+        const raw = Object.fromEntries(formData.entries());
+        const schemaValidation = loginSchema.safeParse(raw);
+
+        if (!schemaValidation.success) {
+            const fieldErrors = z.treeifyError(schemaValidation.error).properties;
+            return generateResponse({
+                ok: false,
+                fieldErrors: simpleExtractFirstError(fieldErrors),
+            });
+        }
 
         const response = await fetch(`${process.env.API_URL}/json/jwt-auth/v1/token`, {
             method: "POST",
