@@ -8,14 +8,51 @@ import { generateResponse } from "@/lib/api";
 import Button from "@/components/button";
 import styles from "./form.module.css";
 import Link from "next/dist/client/link";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { loginSchema, LoginFormState } from "./utils";
+import { Controller, useForm } from "react-hook-form";
 
 const LoginForm = () => {
     const [state, action, isSubmitting] = useActionState(loginAction, generateResponse());
 
+    const { formState, control } = useForm<LoginFormState>({
+        resolver: zodResolver(loginSchema),
+        mode: "onChange",
+        defaultValues: {
+            username: "",
+            password: "",
+        },
+    });
+
     return (
         <form action={action}>
-            <Input placeholder="Digite seu usuário" label="Usuário" type="text" id="usuario" name="username" />
-            <Input placeholder="Digite sua senha" label="Senha" type="password" id="password" name="password" />
+            <Controller
+                control={control}
+                name="username"
+                render={({ field }) => (
+                    <Input
+                        error={formState.errors.username?.message || state.fieldErrors?.username}
+                        placeholder="Digite seu usuário"
+                        label="Usuário"
+                        type="text"
+                        {...field}
+                    />
+                )}
+            />
+            <Controller
+                control={control}
+                name="password"
+                render={({ field }) => (
+                    <Input
+                        error={formState.errors.password?.message || state.fieldErrors?.password}
+                        placeholder="Digite sua senha"
+                        label="Senha"
+                        type="password"
+                        {...field}
+                    />
+                )}
+            />
+
             <div className={styles["submit-button_container"]}>
                 <Button pendingLabel="Entrando..." isLoading={isSubmitting}>
                     Entrar
