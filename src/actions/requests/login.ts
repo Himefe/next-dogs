@@ -5,8 +5,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { Login } from "@/types/login";
-import { z } from "zod/v4";
-import { simpleExtractFirstError } from "@/lib/form";
+import { validateFormDataSchema } from "@/lib/form";
 import { loginRegisterSchema } from "@/app/login/cadastrar/_components/form/utils";
 import { loginSchema } from "@/app/login/_components/form/utils";
 
@@ -16,15 +15,10 @@ export const loginAction = async (...args: ActionParam) => {
     try {
         const [, formData] = args;
 
-        const raw = Object.fromEntries(formData.entries());
-        const schemaValidation = loginSchema.safeParse(raw);
+        const { fieldErrors } = validateFormDataSchema(formData, loginSchema);
 
-        if (!schemaValidation.success) {
-            const fieldErrors = z.treeifyError(schemaValidation.error).properties;
-            return generateResponse({
-                ok: false,
-                fieldErrors: simpleExtractFirstError(fieldErrors),
-            });
+        if (fieldErrors) {
+            return generateResponse({ fieldErrors });
         }
 
         const response = await fetch(`${process.env.API_URL}/json/jwt-auth/v1/token`, {
@@ -69,15 +63,10 @@ export const loginRegisterAction = async (...args: ActionParam) => {
     try {
         const [, formData] = args;
 
-        const raw = Object.fromEntries(formData.entries());
-        const schemaValidation = loginRegisterSchema.safeParse(raw);
+        const { fieldErrors } = validateFormDataSchema(formData, loginRegisterSchema);
 
-        if (!schemaValidation.success) {
-            const fieldErrors = z.treeifyError(schemaValidation.error).properties;
-            return generateResponse({
-                ok: false,
-                fieldErrors: simpleExtractFirstError(fieldErrors),
-            });
+        if (fieldErrors) {
+            return generateResponse({ fieldErrors });
         }
 
         const response = await fetch(`${process.env.API_URL}/json/api/user`, {
