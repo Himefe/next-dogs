@@ -9,14 +9,26 @@ import Button from "@/components/button";
 import { postPhotoAction } from "@/actions/requests/photo";
 import { generateResponse } from "@/lib/api";
 import Error from "@/components/error";
+import { Controller, useForm } from "react-hook-form";
+import { PostPhotoFormState, postPhotoSchema } from "./utils";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const AddPostForm = () => {
     const isMobile = useMedia("(max-width: 767px)");
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const [state, action, isSubmitting] = useActionState(postPhotoAction, generateResponse());
     const [file, setFile] = useState<File>();
 
-    const inputRef = useRef<HTMLInputElement>(null);
+    const { formState, control } = useForm<PostPhotoFormState>({
+        resolver: zodResolver(postPhotoSchema),
+        mode: "onChange",
+        defaultValues: {
+            nome: "",
+            peso: "",
+            idade: "",
+        },
+    });
 
     const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -33,9 +45,51 @@ const AddPostForm = () => {
     return (
         <>
             <form action={action} className={styles.form}>
-                <Input tabIndex={1} label="Título" type="text" name="nome" id="nome" />
-                <Input tabIndex={2} label="Peso" type="number" name="peso" id="peso" />
-                <Input tabIndex={3} label="Idade" type="number" name="idade" id="idade" />
+                <Controller
+                    control={control}
+                    name="nome"
+                    render={({ field }) => (
+                        <Input
+                            {...field}
+                            tabIndex={1}
+                            error={formState.errors.nome?.message || state.fieldErrors?.nome}
+                            label="Título"
+                            type="text"
+                            name="nome"
+                            id="nome"
+                        />
+                    )}
+                />
+                <Controller
+                    control={control}
+                    name="peso"
+                    render={({ field }) => (
+                        <Input
+                            {...field}
+                            error={formState.errors.peso?.message || state.fieldErrors?.peso}
+                            tabIndex={2}
+                            label="Peso"
+                            type="number"
+                            name="peso"
+                            id="peso"
+                        />
+                    )}
+                />
+                <Controller
+                    control={control}
+                    name="idade"
+                    render={({ field }) => (
+                        <Input
+                            {...field}
+                            error={formState.errors.idade?.message || state.fieldErrors?.idade}
+                            tabIndex={3}
+                            label="Idade"
+                            type="number"
+                            name="idade"
+                            id="idade"
+                        />
+                    )}
+                />
                 <button
                     type="button"
                     tabIndex={4}
@@ -46,7 +100,20 @@ const AddPostForm = () => {
                         {file?.name || "Selecione um arquivo"}
                     </span>
                     <span className={styles["file-fake-btn"]}>{!isMobile ? "Carregar Arquivo" : <UploadIcon />}</span>
-                    <input ref={inputRef} type="file" name="img" id="input-file" onChange={handleChangeFile} />
+                    <Controller
+                        control={control}
+                        name="img"
+                        render={() => (
+                            <Input
+                                error={formState.errors.img?.message || state.fieldErrors?.img}
+                                ref={inputRef}
+                                type="file"
+                                name="img"
+                                id="input-file"
+                                onChange={handleChangeFile}
+                            />
+                        )}
+                    />
                 </button>
                 <Button tabIndex={5} disabled={!file} isLoading={isSubmitting} pendingLabel="Enviando...">
                     Adicionar
