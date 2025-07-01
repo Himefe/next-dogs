@@ -2,7 +2,7 @@
 
 import Input from "@/components/input";
 import styles from "./add-post-form.module.css";
-import { useActionState, useRef, useState } from "react";
+import { useActionState, useRef } from "react";
 import UploadIcon from "@/icons/upload";
 import useMedia from "@/hooks/use-media";
 import Button from "@/components/button";
@@ -18,9 +18,8 @@ const AddPostForm = () => {
     const inputRef = useRef<HTMLInputElement>(null);
 
     const [state, action, isSubmitting] = useActionState(postPhotoAction, generateResponse());
-    const [file, setFile] = useState<File>();
 
-    const { formState, control } = useForm<PostPhotoFormState>({
+    const { formState, control, watch } = useForm<PostPhotoFormState>({
         resolver: zodResolver(postPhotoSchema),
         mode: "onChange",
         defaultValues: {
@@ -30,10 +29,13 @@ const AddPostForm = () => {
         },
     });
 
-    const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
+    const file = watch("img");
+    const fileErrorMessage = formState.errors.img?.message || state.fieldErrors?.img;
 
-        setFile(file);
+    const handleChangeFile = (onChange: (...event: any[]) => void) => {
+        return (event: React.ChangeEvent<HTMLInputElement>) => {
+            onChange(event.target.files?.[0]);
+        };
     };
 
     const handleOpenFileInput = () => {
@@ -90,32 +92,46 @@ const AddPostForm = () => {
                         />
                     )}
                 />
-                <button
-                    type="button"
-                    tabIndex={4}
-                    onClick={handleOpenFileInput}
-                    aria-label="Selecionar arquivo"
-                    className={styles["btn-file"]}>
-                    <span className={styles["file-name"]} title={file?.name || ""}>
-                        {file?.name || "Selecione um arquivo"}
-                    </span>
-                    <span className={styles["file-fake-btn"]}>{!isMobile ? "Carregar Arquivo" : <UploadIcon />}</span>
-                    <Controller
-                        control={control}
-                        name="img"
-                        render={() => (
-                            <Input
-                                error={formState.errors.img?.message || state.fieldErrors?.img}
-                                ref={inputRef}
-                                type="file"
-                                name="img"
-                                id="input-file"
-                                onChange={handleChangeFile}
-                            />
-                        )}
-                    />
-                </button>
-                <Button tabIndex={5} disabled={!file} isLoading={isSubmitting} pendingLabel="Enviando...">
+                <div className={styles["input-file-wrapper"]}>
+                    <button
+                        type="button"
+                        tabIndex={4}
+                        onClick={handleOpenFileInput}
+                        aria-label="Selecionar arquivo"
+                        className={styles["btn-file"]}>
+                        <span className={styles["file-name"]} title={file?.name || ""}>
+                            {file?.name || "Selecione um arquivo"}
+                        </span>
+                        <span className={styles["file-fake-btn"]}>
+                            {!isMobile ? "Carregar Arquivo" : <UploadIcon />}
+                        </span>
+                        <Controller
+                            control={control}
+                            name="img"
+                            render={({ field }) => {
+                                return (
+                                    <Input
+                                        {...field}
+                                        value={undefined}
+                                        ref={(ref) => {
+                                            field.ref(ref);
+                                            inputRef.current = ref;
+                                        }}
+                                        type="file"
+                                        id="input-file"
+                                        onChange={handleChangeFile(field.onChange)}
+                                    />
+                                );
+                            }}
+                        />
+                    </button>
+                    {fileErrorMessage && <Error error={fileErrorMessage} />}
+                </div>
+                <Button
+                    tabIndex={5}
+                    disabled={!file || !formState.isValid}
+                    isLoading={isSubmitting}
+                    pendingLabel="Enviando...">
                     Adicionar
                 </Button>
 

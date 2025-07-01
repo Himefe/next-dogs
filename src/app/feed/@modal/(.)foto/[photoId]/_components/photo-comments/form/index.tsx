@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useActionState } from "react";
+import { useActionState } from "react";
 import styles from "./form.module.css";
 import SendCommentIcon from "@/icons/send-comment";
 import { generateResponse } from "@/lib/api";
