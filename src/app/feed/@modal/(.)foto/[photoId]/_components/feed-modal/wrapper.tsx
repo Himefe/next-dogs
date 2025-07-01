@@ -1,4 +1,3 @@
-import React from "react";
 import PhotoProviderWrapper from "../../_contexts/photo/wrapper";
 import FeedModal from "./index";
 import { getPhotoAction } from "@/actions/requests/photo";

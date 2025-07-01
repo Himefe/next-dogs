@@ -1,3 +1,5 @@
-import NullDefault from "@/components/null-default";
+const NullDefault = () => {
+    return null;
+};
 
 export default NullDefault;

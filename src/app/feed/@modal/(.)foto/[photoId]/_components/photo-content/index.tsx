@@ -7,6 +7,8 @@ import Image from "next/image";
 import { FeedPhoto } from "@/types/feed";
 import { usePhoto } from "../../_contexts/photo";
 import classNames from "classnames";
+import { photoDeleteAction } from "@/actions/requests/photo";
+import { usePathname, useRouter } from "next/navigation";
 
 export type PhotoContentProps = {
     photo: FeedPhoto;
@@ -14,11 +16,24 @@ export type PhotoContentProps = {
 
 const PhotoContent = ({ photo }: PhotoContentProps) => {
     const { user } = usePhoto();
+    const pathname = usePathname();
+    const router = useRouter();
 
-    const handleDelete = () => {
-        window.confirm("Deseja realmente deletar esta foto?");
+    const handleDelete = async () => {
+        try {
+            const isConfirmed = window.confirm("Deseja realmente deletar esta foto?");
 
-        console.log(photo.id);
+            const formData = new FormData();
+            formData.append("photoId", photo.id.toString() || "");
+
+            if (isConfirmed) {
+                await photoDeleteAction(undefined, formData);
+
+                router.replace(pathname.includes("conta") ? "/conta" : "/feed");
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     return (

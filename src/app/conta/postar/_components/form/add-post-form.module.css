@@ -2,9 +2,12 @@
     background-color: white;
 }
 
+.input-file-wrapper {
+    margin-bottom: 15px;
+}
+
 .btn-file {
     display: flex;
-    margin-bottom: 15px;
     width: 100%;
     border: none;
     background-color: transparent;
