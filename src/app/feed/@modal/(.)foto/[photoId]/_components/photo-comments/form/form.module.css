@@ -37,14 +37,19 @@
     overflow: hidden;
 }
 
-.send:hover svg path,
-.send:focus svg path {
+.send:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.send:not(:disabled):hover svg path,
+.send:not(:disabled):focus svg path {
     fill: #fea;
     stroke: #fb1;
 }
 
-.send:hover svg g,
-.send:focus svg g {
+.send:not(:disabled):hover svg g,
+.send:not(:disabled):focus svg g {
     animation: latir 0.6s infinite ease-in-out;
 }
 

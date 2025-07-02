@@ -85,6 +85,8 @@ export const postPhotoCommentAction = async (...args: ActionParam) => {
         }
 
         revalidateTag("photo");
+
+        return generateResponse({ ok: true });
     } catch (error) {
         return apiError(error);
     }
