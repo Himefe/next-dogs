@@ -1,4 +1,4 @@
-import FeedModalWrapper from "./_components/feed-modal/wrapper";
+import FeedModalWrapper from "@/components/feed/modal/wrapper";
 
 export type FeedModalPageProps = {
     params: Promise<{ photoId: string }>;

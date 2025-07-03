@@ -1,4 +1,4 @@
-import stylesButton from "@/components/button/button.module.css";
+import stylesButton from "@/components/core/button/button.module.css";
 import Link from "next/link";
 import LoginForm from "./_components/form";
 import styles from "./_components/form/form.module.css";

@@ -1,5 +1,5 @@
+import FeedWrapper from "@/components/feed/wrapper";
 import { Metadata } from "next/dist/types";
-import FeedWrapper from "./_components/wrapper";
 
 export const metadata: Metadata = {
     title: "Next Dogs - Feed",

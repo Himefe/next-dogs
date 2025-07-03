@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import PhotoContent from "../photo-content";
-import { usePhoto } from "../../_contexts/photo";
+import PhotoContent from "./photo/content";
+import { usePhoto } from "../../../contexts/photo";
 
 const FeedModal = () => {
     const router = useRouter();

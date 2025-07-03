@@ -13,9 +13,10 @@ type FeedProps = {
 };
 
 const VIEWPORT_HEIGHT_PERCENTAGE = 0.75;
+const MAX_PHOTOS = 6;
 
 const Feed = ({ photos: photosProps = [], username }: FeedProps) => {
-    const [isInfinite, setIsInfinite] = useState(photosProps.length < 6 ? false : true);
+    const [isInfinite, setIsInfinite] = useState(photosProps.length < MAX_PHOTOS ? false : true);
     const [page, setPage] = useState(1);
     const [photos, setPhotos] = useState<FeedPhoto[]>(photosProps);
     const [isLoading, setIsLoading] = useState(false);
@@ -46,11 +47,11 @@ const Feed = ({ photos: photosProps = [], username }: FeedProps) => {
 
         const handleGetFeedPhotos = async () => {
             try {
-                const { data } = await getFeedPhotos({ page, total: 6, user: username });
+                const { data } = await getFeedPhotos({ page, total: MAX_PHOTOS, user: username });
 
                 setPhotos((prevPhotos) => [...prevPhotos, ...(data || [])]);
 
-                if ((data || []).length < 6) setIsInfinite(false);
+                if ((data || []).length < MAX_PHOTOS) setIsInfinite(false);
             } catch (error) {
                 console.log("error", error);
             }

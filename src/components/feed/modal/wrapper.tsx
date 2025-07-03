@@ -1,4 +1,4 @@
-import PhotoProviderWrapper from "../../_contexts/photo/wrapper";
+import PhotoProviderWrapper from "../../../contexts/photo/wrapper";
 import FeedModal from "./index";
 import { getPhotoAction } from "@/actions/requests/photo";
 import { getUserAction } from "@/actions/requests/user";
