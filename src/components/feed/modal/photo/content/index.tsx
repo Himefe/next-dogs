@@ -37,7 +37,7 @@ const PhotoContent = ({ photo }: PhotoContentProps) => {
     };
 
     return (
-        <div className={classNames("modal-content", styles["modal-photo"])}>
+        <div className={classNames(styles["modal-photo"])}>
             <div className={styles["img-content"]}>
                 <Image width={1000} height={1000} alt={photo?.title || ""} src={photo?.src || ""} />
             </div>

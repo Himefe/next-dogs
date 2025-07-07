@@ -11,7 +11,7 @@ const UserAccountLayout = ({ children, modal }: Readonly<UserAccountLayoutProps>
         <div className="container">
             <UserAccountHeader />
             {children}
-            {modal && modal}
+            {modal}
         </div>
     );
 };

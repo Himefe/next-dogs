@@ -17,7 +17,7 @@ const UserAccountPage = async () => {
 
     return (
         <>
-            {!!photos?.length ? (
+            {photos?.length ? (
                 <Feed photos={photos} username={user?.username} />
             ) : (
                 <div>

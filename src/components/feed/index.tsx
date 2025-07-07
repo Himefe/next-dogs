@@ -16,7 +16,7 @@ const VIEWPORT_HEIGHT_PERCENTAGE = 0.75;
 const MAX_PHOTOS = 6;
 
 const Feed = ({ photos: photosProps = [], username }: FeedProps) => {
-    const [isInfinite, setIsInfinite] = useState(photosProps.length < MAX_PHOTOS ? false : true);
+    const [isInfinite, setIsInfinite] = useState(photosProps.length >= MAX_PHOTOS);
     const [page, setPage] = useState(1);
     const [photos, setPhotos] = useState<FeedPhoto[]>(photosProps);
     const [isLoading, setIsLoading] = useState(false);

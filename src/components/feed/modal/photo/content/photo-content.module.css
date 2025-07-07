@@ -1,4 +1,5 @@
 .modal-photo {
+    display: grid;
     grid-template-columns: 36rem 20rem;
     grid-template-rows: auto 1fr auto;
 }
