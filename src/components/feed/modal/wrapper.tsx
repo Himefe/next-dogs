@@ -1,7 +1,7 @@
-import PhotoProviderWrapper from "../../_contexts/photo/wrapper";
 import FeedModal from "./index";
 import { getPhotoAction } from "@/actions/requests/photo";
 import { getUserAction } from "@/actions/requests/user";
+import PhotoProviderWrapper from "@/contexts/photo/wrapper";
 
 type FeedModalWrapperProps = {
     photoId?: string;

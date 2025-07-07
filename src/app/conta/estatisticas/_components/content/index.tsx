@@ -15,7 +15,7 @@ const StatisticsContent = ({ total, graph }: StatisticsContentProps) => {
                 <p>Acessos: {total}</p>
             </div>
             <div className={styles["grafico-item"]}>
-                {!!graph.length ? (
+                {graph.length ? (
                     <VictoryPie
                         data={graph}
                         innerRadius={50}
@@ -40,7 +40,7 @@ const StatisticsContent = ({ total, graph }: StatisticsContentProps) => {
                 )}
             </div>
             <div className={styles["grafico-item"]}>
-                {!!graph.length ? (
+                {graph.length ? (
                     <VictoryChart containerComponent={<VictoryContainer style={{ touchAction: "auto" }} />}>
                         <VictoryBar alignment="start" data={graph} style={{ data: { fill: "#fb1", stroke: "#fea" } }} />
                     </VictoryChart>

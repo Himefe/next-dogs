@@ -2,8 +2,8 @@
 
 import { loginPasswordLostAction } from "@/actions/requests/login";
 import Error from "@/components/error";
-import Button from "@/components/button";
-import Input from "@/components/input";
+import Button from "@/components/core/button";
+import Input from "@/components/core/input";
 import { generateResponse } from "@/lib/api";
 import { useActionState } from "react";
 

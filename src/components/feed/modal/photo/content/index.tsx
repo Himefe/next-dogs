@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import styles from "./photo-content.module.css";
-import PhotoComments from "../photo-comments";
+import PhotoComments from "../comments";
 import Image from "next/image";
 import { FeedPhoto } from "@/types/feed";
-import { usePhoto } from "../../_contexts/photo";
+import { usePhoto } from "../../../../../contexts/photo";
 import classNames from "classnames";
 import { photoDeleteAction } from "@/actions/requests/photo";
 import { usePathname, useRouter } from "next/navigation";
@@ -37,7 +37,7 @@ const PhotoContent = ({ photo }: PhotoContentProps) => {
     };
 
     return (
-        <div className={classNames("modal-content", styles["modal-photo"])}>
+        <div className={classNames(styles["modal-photo"])}>
             <div className={styles["img-content"]}>
                 <Image width={1000} height={1000} alt={photo?.title || ""} src={photo?.src || ""} />
             </div>

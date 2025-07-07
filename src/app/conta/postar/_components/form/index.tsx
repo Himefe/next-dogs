@@ -1,11 +1,11 @@
 "use client";
 
-import Input from "@/components/input";
+import Input from "@/components/core/input";
 import styles from "./add-post-form.module.css";
 import { useActionState, useRef } from "react";
 import UploadIcon from "@/icons/upload";
 import useMedia from "@/hooks/use-media";
-import Button from "@/components/button";
+import Button from "@/components/core/button";
 import { postPhotoAction } from "@/actions/requests/photo";
 import { generateResponse } from "@/lib/api";
 import Error from "@/components/error";
@@ -30,7 +30,7 @@ const AddPostForm = () => {
     });
 
     const file = watch("img");
-    const fileErrorMessage = formState.errors.img?.message || state.fieldErrors?.img;
+    const fileErrorMessage = formState.errors.img?.message ?? state.fieldErrors?.img;
 
     const handleChangeFile = (onChange: (...event: any[]) => void) => {
         return (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,8 +53,8 @@ const AddPostForm = () => {
                     render={({ field }) => (
                         <Input
                             {...field}
-                            tabIndex={1}
-                            error={formState.errors.nome?.message || state.fieldErrors?.nome}
+                            tabIndex={0}
+                            error={formState.errors.nome?.message ?? state.fieldErrors?.nome}
                             label="Título"
                             type="text"
                             name="nome"
@@ -68,8 +68,8 @@ const AddPostForm = () => {
                     render={({ field }) => (
                         <Input
                             {...field}
-                            error={formState.errors.peso?.message || state.fieldErrors?.peso}
-                            tabIndex={2}
+                            error={formState.errors.peso?.message ?? state.fieldErrors?.peso}
+                            tabIndex={0}
                             label="Peso"
                             type="number"
                             name="peso"
@@ -83,8 +83,8 @@ const AddPostForm = () => {
                     render={({ field }) => (
                         <Input
                             {...field}
-                            error={formState.errors.idade?.message || state.fieldErrors?.idade}
-                            tabIndex={3}
+                            error={formState.errors.idade?.message ?? state.fieldErrors?.idade}
+                            tabIndex={0}
                             label="Idade"
                             type="number"
                             name="idade"
@@ -95,7 +95,7 @@ const AddPostForm = () => {
                 <div className={styles["input-file-wrapper"]}>
                     <button
                         type="button"
-                        tabIndex={4}
+                        tabIndex={0}
                         onClick={handleOpenFileInput}
                         aria-label="Selecionar arquivo"
                         className={styles["btn-file"]}>
@@ -128,7 +128,7 @@ const AddPostForm = () => {
                     {fileErrorMessage && <Error error={fileErrorMessage} />}
                 </div>
                 <Button
-                    tabIndex={5}
+                    tabIndex={0}
                     disabled={!file || !formState.isValid}
                     isLoading={isSubmitting}
                     pendingLabel="Enviando...">

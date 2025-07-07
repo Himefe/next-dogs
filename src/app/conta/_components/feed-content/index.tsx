@@ -1,7 +1,6 @@
-import React from "react";
 import { getFeedPhotos } from "@/actions/requests/feed";
 import { getUserAction } from "@/actions/requests/user";
-import stylesButton from "@/components/button/button.module.css";
+import stylesButton from "@/components/button/button/button.module.css";
 import styles from "../../user-account.module.css";
 import Feed from "@/components/feed";
 import Link from "next/dist/client/link";

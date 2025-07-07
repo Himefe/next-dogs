@@ -2,7 +2,7 @@
 
 import styles from "./photo-comments.module.css";
 import PhotoCommentForm from "./form";
-import { usePhoto } from "../../_contexts/photo";
+import { usePhoto } from "@/contexts/photo";
 
 type PhotoCommentsProps = {
     photoId: number;

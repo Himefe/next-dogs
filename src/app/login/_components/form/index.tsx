@@ -1,11 +1,11 @@
 "use client";
 
-import Input from "@/components/input";
+import Input from "@/components/core/input";
 import Error from "@/components/error";
 import { loginAction } from "@/actions/requests/login";
 import { useActionState } from "react";
 import { generateResponse } from "@/lib/api";
-import Button from "@/components/button";
+import Button from "@/components/core/button";
 import styles from "./form.module.css";
 import Link from "next/dist/client/link";
 import { zodResolver } from "@hookform/resolvers/zod";
