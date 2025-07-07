@@ -1,33 +1,40 @@
 {
-  "name": "next-dogs",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "commit": "cz"
-  },
-  "dependencies": {
-    "@hookform/resolvers": "^5.1.1",
-    "classnames": "^2.5.1",
-    "next": "^15.3.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-hook-form": "^7.58.1",
-    "victory": "^37.3.6",
-    "zod": "^3.25.67"
-  },
-  "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "commitizen": "^4.3.1",
-    "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.2",
-    "typescript": "^5"
-  }
+    "name": "next-dogs",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "commit": "cz"
+    },
+    "dependencies": {
+        "@hookform/resolvers": "^5.1.1",
+        "classnames": "^2.5.1",
+        "next": "^15.3.4",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0",
+        "react-hook-form": "^7.58.1",
+        "victory": "^37.3.6",
+        "zod": "^3.25.67"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3",
+        "@testing-library/jest-dom": "^6.6.3",
+        "@testing-library/react": "^16.3.0",
+        "@testing-library/user-event": "^14.6.1",
+        "@types/jest": "^30.0.0",
+        "@types/node": "^20",
+        "@types/react": "^19",
+        "@types/react-dom": "^19",
+        "commitizen": "^4.3.1",
+        "cz-conventional-changelog": "^3.3.0",
+        "eslint": "^9",
+        "eslint-config-next": "15.3.2",
+        "jest": "^30.0.4",
+        "jest-environment-jsdom": "^30.0.4",
+        "ts-jest": "^29.4.0",
+        "typescript": "^5"
+    }
 }

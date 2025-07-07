@@ -6,6 +6,8 @@ export const metadata: Metadata = {
     description: "Esta é a página de esqueci minha senha do usuário no projeto dogs!",
 };
 
+export const dynamic = "force-static";
+
 const LoginForgotPasswordPage = () => {
     return <LoginForgotPasswordContent />;
 };

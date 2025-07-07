@@ -1,6 +1,6 @@
 import { getFeedPhotos } from "@/actions/requests/feed";
 import { getUserAction } from "@/actions/requests/user";
-import stylesButton from "@/components/button/button/button.module.css";
+import stylesButton from "@/components/core/button/button.module.css";
 import styles from "../../user-account.module.css";
 import Feed from "@/components/feed";
 import Link from "next/dist/client/link";
@@ -11,7 +11,7 @@ const UserAccountFeedContent = async () => {
 
     return (
         <>
-            {!!photos?.length ? (
+            {photos?.length ? (
                 <Feed photos={photos} username={user?.username} />
             ) : (
                 <div>
