@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import Input from "./index";
 
 describe("<Input />", () => {
@@ -26,5 +26,17 @@ describe("<Input />", () => {
         const inputElement = getByRole("textbox") as HTMLInputElement;
         expect(inputElement.type).toBe("email");
         expect(inputElement.placeholder).toBe("Enter your email");
+    });
+
+    it("should render input and handle change event", () => {
+        const handleChange = jest.fn();
+        const { getByRole } = render(<Input onChange={handleChange} />);
+
+        const inputElement = getByRole("textbox") as HTMLInputElement;
+
+        fireEvent.change(inputElement, { target: { value: "New value" } });
+
+        expect(handleChange).toHaveBeenCalledTimes(1);
+        expect(inputElement.value).toBe("New value");
     });
 });
