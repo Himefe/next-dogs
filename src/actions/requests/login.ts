@@ -5,12 +5,21 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { Login } from "@/types/login";
+import { validateFormDataSchema } from "@/lib/form";
+import { loginRegisterSchema } from "@/app/login/cadastrar/_components/form/utils";
+import { loginSchema } from "@/app/login/_components/form/utils";
 
 export type ActionParam = [state: ReturnType<typeof generateResponse> | undefined, formData: FormData];
 
 export const loginAction = async (...args: ActionParam) => {
     try {
         const [, formData] = args;
+
+        const { fieldErrors } = validateFormDataSchema(formData, loginSchema);
+
+        if (fieldErrors) {
+            return generateResponse({ fieldErrors });
+        }
 
         const response = await fetch(`${process.env.API_URL}/json/jwt-auth/v1/token`, {
             method: "POST",
@@ -53,6 +62,12 @@ export const loginAction = async (...args: ActionParam) => {
 export const loginRegisterAction = async (...args: ActionParam) => {
     try {
         const [, formData] = args;
+
+        const { fieldErrors } = validateFormDataSchema(formData, loginRegisterSchema);
+
+        if (fieldErrors) {
+            return generateResponse({ fieldErrors });
+        }
 
         const response = await fetch(`${process.env.API_URL}/json/api/user`, {
             method: "POST",

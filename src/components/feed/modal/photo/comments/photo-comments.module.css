@@ -5,6 +5,8 @@
 
 .container {
     padding: 20px;
+    margin-right: 10px;
+    overflow-y: auto;
 }
 
 .comments p {

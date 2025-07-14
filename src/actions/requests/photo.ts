@@ -85,6 +85,34 @@ export const postPhotoCommentAction = async (...args: ActionParam) => {
         }
 
         revalidateTag("photo");
+
+        return generateResponse({ ok: true });
+    } catch (error) {
+        return apiError(error);
+    }
+};
+
+export const photoDeleteAction = async (...args: ActionParam) => {
+    try {
+        const token = (await cookies()).get("token")?.value;
+        const [, formData] = args;
+
+        const photoId = formData.get("photoId") as string;
+
+        const response = await fetch(`${process.env.API_URL}/json/api/photo/${photoId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
+
+        const data = await response?.json();
+
+        if (!response.ok) {
+            throw new Error(data?.message || "Ocorreu um erro ao deletar.");
+        }
+
+        revalidateTag("feed-photos");
     } catch (error) {
         return apiError(error);
     }

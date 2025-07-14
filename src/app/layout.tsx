@@ -19,6 +19,7 @@ export default async function RootLayout({
                 <UserContextProvider user={user}>
                     <Header />
                     <main className="main-body">{children}</main>
+                    <div id="modal-root" />
                     <Footer />
                 </UserContextProvider>
             </body>
