@@ -1,7 +1,7 @@
 "use client";
 
 import Input from "@/components/core/input";
-import Error from "@/components/error";
+import ErrorMessage from "@/components/error";
 import { loginAction } from "@/actions/requests/login";
 import { useActionState } from "react";
 import { generateResponse } from "@/lib/api";
@@ -62,7 +62,7 @@ const LoginForm = () => {
                 </Link>
             </div>
 
-            {!!state.error && <Error error={state.error} />}
+            {!!state.error && <ErrorMessage error={state.error} />}
         </form>
     );
 };

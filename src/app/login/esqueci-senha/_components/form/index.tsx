@@ -1,7 +1,7 @@
 "use client";
 
 import { loginPasswordLostAction } from "@/actions/requests/login";
-import Error from "@/components/error";
+import ErrorMessage from "@/components/error";
 import Button from "@/components/core/button";
 import Input from "@/components/core/input";
 import { generateResponse } from "@/lib/api";
@@ -19,7 +19,7 @@ const LoginForgotPasswordForm = () => {
                 Enviar email
             </Button>
 
-            {!!state.error && <Error error={state.error} />}
+            {!!state.error && <ErrorMessage error={state.error} />}
             {!!state.ok && <p style={{ color: "#4c1", marginTop: "1rem" }}>Email enviado.</p>}
         </form>
     );

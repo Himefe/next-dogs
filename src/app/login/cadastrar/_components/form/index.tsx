@@ -4,7 +4,7 @@ import { Metadata } from "next";
 import styles from "@/app/login/_components/form/form.module.css";
 import Input from "@/components/core/input";
 import { loginRegisterAction } from "@/actions/requests/login";
-import Error from "@/components/error";
+import ErrorMessage from "@/components/error";
 import { useActionState } from "react";
 import Button from "@/components/core/button";
 import { Controller, useForm } from "react-hook-form";
@@ -84,7 +84,7 @@ const LoginRegisterForm = () => {
                     Cadastrar
                 </Button>
 
-                {!!state.error && <Error error={state.error} />}
+                {!!state.error && <ErrorMessage error={state.error} />}
             </form>
         </section>
     );
