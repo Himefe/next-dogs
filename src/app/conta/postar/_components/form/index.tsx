@@ -8,7 +8,7 @@ import useMedia from "@/hooks/use-media";
 import Button from "@/components/core/button";
 import { postPhotoAction } from "@/actions/requests/photo";
 import { generateResponse } from "@/lib/api";
-import Error from "@/components/error";
+import ErrorMessage from "@/components/error";
 import { Controller, useForm } from "react-hook-form";
 import { PostPhotoFormState, postPhotoSchema } from "./utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -125,7 +125,7 @@ const AddPostForm = () => {
                             }}
                         />
                     </button>
-                    {fileErrorMessage && <Error error={fileErrorMessage} />}
+                    {fileErrorMessage && <ErrorMessage error={fileErrorMessage} />}
                 </div>
                 <Button
                     tabIndex={0}
@@ -135,7 +135,7 @@ const AddPostForm = () => {
                     Adicionar
                 </Button>
 
-                {!!state.error && <Error error={state.error} />}
+                {!!state.error && <ErrorMessage error={state.error} />}
             </form>
 
             {!!file && (

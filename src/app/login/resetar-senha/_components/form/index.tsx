@@ -1,7 +1,7 @@
 "use client";
 
 import { loginPasswordResetAction } from "@/actions/requests/login";
-import Error from "@/components/error";
+import ErrorMessage from "@/components/error";
 import Button from "@/components/core/button";
 import Input from "@/components/core/input";
 import { generateResponse } from "@/lib/api";
@@ -20,7 +20,7 @@ const LoginResetPasswordForm = ({ keyToken, login }: LoginResetPasswordFormProps
             <Input label="Nova Senha" name="password" type="password" />
             <input type="hidden" name="login" value={login} />
             <input type="hidden" name="key" value={keyToken} />
-            {state.error && <Error error={state.error} />}
+            {state.error && <ErrorMessage error={state.error} />}
 
             <Button pendingLabel="Resetando..." isLoading={isSubmitting}>
                 Redefinir Senha
