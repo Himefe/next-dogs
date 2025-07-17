@@ -2,7 +2,7 @@
 
 import { FeedPhoto } from "@/types/feed";
 import styles from "./feed-photos.module.css";
-import FeedPhotosItem from "./photo";
+import FeedPhotosItem from "./item";
 
 type FeedPhotosProps = {
     photos: FeedPhoto[];

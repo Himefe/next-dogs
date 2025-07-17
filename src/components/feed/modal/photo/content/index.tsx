@@ -5,10 +5,10 @@ import styles from "./photo-content.module.css";
 import PhotoComments from "../comments";
 import Image from "next/image";
 import { FeedPhoto } from "@/types/feed";
-import { usePhoto } from "../../../../../contexts/photo";
 import classNames from "classnames";
 import { photoDeleteAction } from "@/actions/requests/photo";
 import { usePathname, useRouter } from "next/navigation";
+import { usePhoto } from "@/contexts/photo";
 
 export type PhotoContentProps = {
     photo: FeedPhoto;
