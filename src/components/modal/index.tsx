@@ -33,7 +33,7 @@ const Modal = ({ children, onClose }: ModalProps) => {
     if (!isModalHydrated) return null;
 
     return createPortal(
-        <div className="modal" onClick={handleCloseModal}>
+        <div data-testid="modal" className="modal" onClick={handleCloseModal}>
             <div className="modal-content">{children}</div>
         </div>,
         document.getElementById("modal-root") as HTMLElement
