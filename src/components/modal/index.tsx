@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { SyntheticEvent, useEffect, useState } from "react";
+import React, { SyntheticEvent, useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 
 type ModalProps = {
@@ -14,15 +14,31 @@ const Modal = ({ children, onClose }: ModalProps) => {
 
     const [isModalHydrated, setIsModalHydrated] = useState(false);
 
-    const handleCloseModal = (event: SyntheticEvent<HTMLDivElement>) => {
-        if (onClose) {
-            return onClose();
+    const handleCloseModal = useCallback(
+        (event: SyntheticEvent<HTMLDivElement> | KeyboardEvent) => {
+            if (onClose) {
+                return onClose();
+            }
+
+            const hasTarget = event.target === event.currentTarget;
+            const isKeyboardEvent = event instanceof KeyboardEvent && event.key === "Escape";
+
+            if (hasTarget || isKeyboardEvent) {
+                router.back();
+            }
+        },
+        [onClose, router]
+    );
+
+    useEffect(() => {
+        if (isModalHydrated) {
+            window.addEventListener("keydown", handleCloseModal);
         }
 
-        if (event.target === event.currentTarget) {
-            router.back();
-        }
-    };
+        return () => {
+            window.removeEventListener("keydown", handleCloseModal);
+        };
+    }, [isModalHydrated, handleCloseModal]);
 
     useEffect(() => {
         setIsModalHydrated(true);
@@ -33,7 +49,7 @@ const Modal = ({ children, onClose }: ModalProps) => {
     if (!isModalHydrated) return null;
 
     return createPortal(
-        <div className="modal" onClick={handleCloseModal}>
+        <div data-testid="modal" className="modal" onClick={handleCloseModal}>
             <div className="modal-content">{children}</div>
         </div>,
         document.getElementById("modal-root") as HTMLElement
