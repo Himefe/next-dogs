@@ -1,9 +1,11 @@
+import styles from "./error.module.css";
+
 type ErrorProps = {
     error: string;
 };
 
-const Error = ({ error }: ErrorProps) => {
-    return <p style={{ color: "#f31", margin: "0.5rem 0 1rem 0" }} dangerouslySetInnerHTML={{ __html: error }} />;
+const ErrorMessage = ({ error }: ErrorProps) => {
+    return <p className={styles.error} dangerouslySetInnerHTML={{ __html: error }} />;
 };
 
-export default Error;
+export default ErrorMessage;

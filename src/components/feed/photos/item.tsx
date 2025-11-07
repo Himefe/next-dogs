@@ -3,7 +3,7 @@
 import { ReactEventHandler, useState } from "react";
 import Image from "next/image";
 import { FeedPhoto } from "@/types/feed";
-import styles from "../feed-photos.module.css";
+import styles from "./feed-photos.module.css";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 

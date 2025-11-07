@@ -5,7 +5,7 @@ import styles from "./form.module.css";
 import SendCommentIcon from "@/icons/send-comment";
 import { generateResponse } from "@/lib/api";
 import { postPhotoCommentAction } from "@/actions/requests/photo";
-import Error from "@/components/error";
+import ErrorMessage from "@/components/error";
 import { Controller, useForm } from "react-hook-form";
 import { PhotoCommentFormState, photoCommentSchema } from "./utils";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -50,7 +50,7 @@ const PhotoComment = ({ photoId }: PhotoCommentProps) => {
                 <SendCommentIcon />
             </button>
 
-            {!!state?.error && <Error error={state.error} />}
+            {!!state?.error && <ErrorMessage error={state.error} />}
         </form>
     );
 };
