@@ -32,11 +32,11 @@ const Modal = ({ children, onClose }: ModalProps) => {
 
     useEffect(() => {
         if (isModalHydrated) {
-            window.addEventListener("keydown", handleCloseModal);
+            globalThis.addEventListener("keydown", handleCloseModal);
         }
 
         return () => {
-            window.removeEventListener("keydown", handleCloseModal);
+            globalThis.removeEventListener("keydown", handleCloseModal);
         };
     }, [isModalHydrated, handleCloseModal]);
 
