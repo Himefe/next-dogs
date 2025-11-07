@@ -81,4 +81,12 @@ describe("<Modal />", () => {
 
         expect(mockBack).not.toHaveBeenCalled();
     });
+
+    it("should call router.back when pressing Escape key", () => {
+        render(<Modal>Modal Content</Modal>);
+
+        fireEvent.keyDown(document, { key: "Escape" });
+
+        expect(mockBack).toHaveBeenCalled();
+    });
 });
